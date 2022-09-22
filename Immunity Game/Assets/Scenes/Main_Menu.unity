@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 262046225}
   - component: {fileID: 262046226}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: Fullscreen_Toggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -543,7 +543,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: FULLSCREEN
+  m_text: RESOLUTION
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3a67d6156e0372d47ae339d56b61f6f2, type: 2}
   m_sharedMaterial: {fileID: 7613608870467357664, guid: 3a67d6156e0372d47ae339d56b61f6f2, type: 2}
@@ -1056,13 +1056,14 @@ GameObject:
   - component: {fileID: 736147565}
   - component: {fileID: 736147567}
   - component: {fileID: 736147566}
+  - component: {fileID: 736147568}
   m_Layer: 5
   m_Name: Options_Screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &736147565
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1128,6 +1129,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 736147564}
   m_CullTransparentMesh: 1
+--- !u!114 &736147568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736147564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744fb7fb30e162c4abb99b56ee99754d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullscreenToggle: {fileID: 262046226}
+  vsyncToggle: {fileID: 1479703091}
 --- !u!1 &790222192
 GameObject:
   m_ObjectHideFlags: 0
@@ -1410,7 +1425,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: GRAPICS
+  m_text: GRAPHICS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3a67d6156e0372d47ae339d56b61f6f2, type: 2}
   m_sharedMaterial: {fileID: 7613608870467357664, guid: 3a67d6156e0372d47ae339d56b61f6f2, type: 2}
@@ -2504,7 +2519,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6921115501541173285, guid: 18468676a8360634a93d1a7e17a46d0f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -79
+      value: -56.7
       objectReference: {fileID: 0}
     - target: {fileID: 6921115501541173285, guid: 18468676a8360634a93d1a7e17a46d0f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2541,18 +2556,18 @@ PrefabInstance:
     - target: {fileID: 6921115501541173286, guid: 18468676a8360634a93d1a7e17a46d0f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1333504402}
+      objectReference: {fileID: 736147568}
     - target: {fileID: 6921115501541173286, guid: 18468676a8360634a93d1a7e17a46d0f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6921115501541173286, guid: 18468676a8360634a93d1a7e17a46d0f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CloseOptions
+      value: ApplyGraphics
       objectReference: {fileID: 0}
     - target: {fileID: 6921115501541173286, guid: 18468676a8360634a93d1a7e17a46d0f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: mainMenu, Assembly-CSharp
+      value: optionsScreen, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6921115501541173286, guid: 18468676a8360634a93d1a7e17a46d0f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -2681,7 +2696,7 @@ GameObject:
   - component: {fileID: 1479703090}
   - component: {fileID: 1479703091}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: Vsync_Toggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
