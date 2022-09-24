@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class mainMenu : MonoBehaviour
+public class MainMenu : MonoBehaviour
 {
     public string firstLevel, secondLevel, thirdLevel, fourthLevel, fithLevel;
     public GameObject optionsScreen;
@@ -34,14 +34,6 @@ public class mainMenu : MonoBehaviour
     /*Closes the options menu*/
     public void CloseOptions() {
         optionsScreen.SetActive(false);
-    }
-    
-    public void OpenLevels() {
-    
-    }
-    
-    public void CloseLevels() {
-    
     }
 
     /*Closes the application*/
