@@ -1,3 +1,4 @@
+using Managers;
 using UnityEngine;
 
 namespace Behaviour_Scripts
@@ -8,6 +9,7 @@ namespace Behaviour_Scripts
         [SerializeField, Range(1f, 5f)] private float rotationSpeed = 2f;
         [SerializeField, Range(100f, 1000f)] private float randomTargetDistance = 500f;
         [SerializeField, Range(10f, 1000f)] private float visionDistance = 200f;
+        [SerializeField] private float health = 10f;
 
         [SerializeField] private GameObject gameCanvas;
     
@@ -49,7 +51,7 @@ namespace Behaviour_Scripts
         private void LookForCell(Transform bacteriaTransform)
         {
             // find the closest cell to the bacteria.
-            GameObject[] cells = GameObject.FindGameObjectsWithTag("cell");
+            GameObject[] cells = GameObject.FindGameObjectsWithTag("Cell");
             float smallestDistance = Mathf.Infinity;
             GameObject closestCell = null;
             foreach (GameObject cell in cells)
@@ -84,6 +86,12 @@ namespace Behaviour_Scripts
                 ),
                 0f
             );
+        }
+
+        public void Damage(float damage)
+        {
+            health -= damage;
+            if (health <= 0) BacteriaManager.Instance.RemoveBacteria(gameObject);
         }
     }
 }

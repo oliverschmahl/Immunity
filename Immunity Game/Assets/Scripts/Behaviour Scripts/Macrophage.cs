@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using Managers;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Behaviour_Scripts
@@ -13,22 +11,22 @@ namespace Behaviour_Scripts
         [SerializeField, Range(0.1f, 5f)] private float rotationSpeed = 0.5f;
 
         
-        private GameObject[] _enemies;
+        private GameObject[] _bacteria;
         private GameObject _target;
 
         private void Awake()
         {
-            BacteriaManager.OnBacteriaChanged += BacteriaChanged;
+            BacteriaManager.OnBacteriaListChanged += BacteriaListChanged;
         }
 
         private void OnDestroy()
         {
-            BacteriaManager.OnBacteriaChanged -= BacteriaChanged;
+            BacteriaManager.OnBacteriaListChanged -= BacteriaListChanged;
         }
 
-        private void BacteriaChanged(List<GameObject> bacteriaList)
+        private void BacteriaListChanged(List<GameObject> bacteriaList)
         {
-            _enemies = bacteriaList.ToArray();
+            _bacteria = bacteriaList.ToArray();
         }
 
 
@@ -39,6 +37,7 @@ namespace Behaviour_Scripts
 
         void Update()
         {
+            FindTarget();
             if (_target)
             {
                 var macrophageTransform = transform;
@@ -68,7 +67,7 @@ namespace Behaviour_Scripts
         {
             float distance = Mathf.Infinity;
             GameObject closestEnemy = null;
-            foreach (GameObject enemy in _enemies)
+            foreach (GameObject enemy in _bacteria)
             {
                 float distanceToEnemy = Vector2.Distance(transform.position, enemy.transform.position);
                 if (distanceToEnemy < distance)

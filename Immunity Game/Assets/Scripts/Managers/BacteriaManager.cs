@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Managers
 {
@@ -9,40 +8,28 @@ namespace Managers
     {
         public static BacteriaManager Instance;
         public List<GameObject> bacteriaList;
-        public static event Action<List<GameObject>> OnBacteriaChanged; 
-
+        public static event Action<List<GameObject>> OnBacteriaListChanged; 
         
-
         private void Awake()
         {
             Instance = this;
         }
 
-        void Start()
+        private void Start()
         {
             GameObject[] bacteria = GameObject.FindGameObjectsWithTag("Bacteria");
             foreach (GameObject bacterium in bacteria)
             {
                 bacteriaList.Add(bacterium);
             }
-            OnBacteriaChanged?.Invoke(bacteriaList);
+            OnBacteriaListChanged?.Invoke(bacteriaList);
         }
-
+        
         public void RemoveBacteria(GameObject bacteria)
         {
             bacteriaList.Remove(bacteria);
             Destroy(bacteria);
-            OnBacteriaChanged?.Invoke(bacteriaList);
-        }
-
-        public void AddBacteria(GameObject bacteria)
-        {
-            // NEEDS IMPLEM
-        }
-
-        public GameObject[] GetBacteria()
-        {
-            return bacteriaList.ToArray();
+            OnBacteriaListChanged?.Invoke(bacteriaList);
         }
     }
 }
