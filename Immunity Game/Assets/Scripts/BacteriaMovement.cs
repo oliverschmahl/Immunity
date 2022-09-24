@@ -3,14 +3,20 @@ using UnityEngine.Serialization;
 
 public class BacteriaMovement : MonoBehaviour
 {
-    [SerializeField, Range(1f, 5f)] private float movementSpeed = 1f;
+    [SerializeField, Range(1f, 200f)] private float movementSpeed = 10f;
     [SerializeField, Range(1f, 5f)] private float rotationSpeed = 3f;
+    [SerializeField, Range(100f, 1000f)] private float randomTargetDistance = 100f;
+    [SerializeField, Range(10f, 1000f)] private float visionDistance = 100f;
 
-    private Vector3 _target;
+    [SerializeField] private GameObject gameCanvas;
+    
+    private Vector3 _target = new(0f, 0f, 0f);
+    private readonly Vector3[] _worldCorners = new Vector3[4];
 
     void Start()
     {
         LookForCell(transform);
+        gameCanvas.GetComponent<RectTransform>().GetWorldCorners(_worldCorners);
     }
 
     void Update()
@@ -22,14 +28,14 @@ public class BacteriaMovement : MonoBehaviour
         // if there is no target gameObject create a random temporary waypoint
         if (_target.Equals(new Vector3(0f, 0f, 0f)))
         {
-            _target = CreateRandomTarget(transform.position);
+            CreateRandomTarget(transform.position);
         }
 
-        // if target is within distance search for new
-        if (Vector3.Distance(transform.position, _target) < 0.3f)
+        // if target is within distance search for new 
+        if (Vector3.Distance(transform.position, _target) < visionDistance)
         {
             
-            _target = CreateRandomTarget(transform.position);
+            CreateRandomTarget(transform.position);
             LookForCell(transform);
         }
 
@@ -49,21 +55,32 @@ public class BacteriaMovement : MonoBehaviour
         {
             Vector3 difference = cell.transform.position - bacteriaTransform.position;
             float distance = difference.sqrMagnitude;
-            if (distance < 1 && distance < smallestDistance)
+            if (distance < visionDistance && distance < smallestDistance)
             {
                 smallestDistance = distance;
                 closestCell = cell;
             }
         }
 
-        _target = closestCell.transform.position;
+        if (closestCell)
+        {
+            _target = closestCell.transform.position;
+        }
     }
 
-    private Vector3 CreateRandomTarget(Vector3 bacteriaPosition)
+    private void CreateRandomTarget(Vector3 bacteriaPosition)
     {
-        return new Vector3(
-            Random.Range(bacteriaPosition.x - 1f, bacteriaPosition.x + 1f),
-            Random.Range(bacteriaPosition.y - 1f, bacteriaPosition.y + 1f),
+        _target = new Vector3(
+            Mathf.Clamp(
+                Random.Range(bacteriaPosition.x - randomTargetDistance, bacteriaPosition.x + randomTargetDistance), 
+                _worldCorners[0].x,
+                _worldCorners[2].x
+            ),
+            Mathf.Clamp(
+                Random.Range(bacteriaPosition.y - randomTargetDistance, bacteriaPosition.y + randomTargetDistance),
+                _worldCorners[0].y,
+                _worldCorners[2].y
+            ),
             0f
         );
     }
