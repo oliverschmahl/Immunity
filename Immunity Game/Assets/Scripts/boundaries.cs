@@ -9,10 +9,11 @@ public class Boundaries : MonoBehaviour
 
     private float _objectWidth;
     private float _objectHeight;
-    
+
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(true);
         /*
          * screenBounds: Finds the boundry of the main camera view for the x and y axis
          * objectWidth: Finds the width of a sprite in pixels and divides it by 2 to find half the width

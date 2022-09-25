@@ -19,6 +19,7 @@ public class OptionsScreen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(true);
         fullscreenToggle.isOn = Screen.fullScreen;
 
         if (QualitySettings.vSyncCount == 0)

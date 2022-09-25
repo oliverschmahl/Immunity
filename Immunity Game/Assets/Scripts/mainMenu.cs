@@ -7,19 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public string firstLevel, secondLevel, thirdLevel, fourthLevel, fithLevel;
     public GameObject optionsScreen;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
     /*Starts the game by playing the first level scene*/
     public void StartGame()
     {
