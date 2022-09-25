@@ -4,7 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - cell
+  - Bacteria
+  - Cell
   layers:
   - Default
   - TransparentFX
