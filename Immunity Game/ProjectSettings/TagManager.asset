@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - DefenseOrganism
+  - Bacteria
   layers:
   - Default
   - TransparentFX
