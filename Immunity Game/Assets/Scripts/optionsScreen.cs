@@ -9,7 +9,7 @@ public class OptionsScreen : MonoBehaviour
 {
     public Toggle fullscreenToggle, vsyncToggle;
     public List<ResItem> resolutions = new List<ResItem>();
-    private int selectedResolution;
+    private int _selectedResolution;
     public TMP_Text resolutionLabel;
     public AudioMixer theMixer;
     public TMP_Text masterLabel;
@@ -35,7 +35,7 @@ public class OptionsScreen : MonoBehaviour
             if (Screen.width == resolutions[i].horizontal && Screen.height == resolutions[i].vertical) {
                 foundRes = true;
 
-                selectedResolution = i;
+                _selectedResolution = i;
                 
                 UpdateResLabel();
             }
@@ -48,7 +48,7 @@ public class OptionsScreen : MonoBehaviour
             newRes.vertical = Screen.height;
             
             resolutions.Add(newRes);
-            selectedResolution = resolutions.Count - 1;
+            _selectedResolution = resolutions.Count - 1;
             
             UpdateResLabel();
         }
@@ -67,27 +67,27 @@ public class OptionsScreen : MonoBehaviour
 
     public void ResLeft()
     {
-        selectedResolution--;
-        if (selectedResolution < 0)
+        _selectedResolution--;
+        if (_selectedResolution < 0)
         {
-            selectedResolution = 0;
+            _selectedResolution = 0;
         }
         UpdateResLabel();
     }
 
     public void ResRight()
     {
-        selectedResolution++;
-        if (selectedResolution > resolutions.Count - 1)
+        _selectedResolution++;
+        if (_selectedResolution > resolutions.Count - 1)
         {
-            selectedResolution = resolutions.Count - 1;
+            _selectedResolution = resolutions.Count - 1;
         }
         UpdateResLabel();
     }
 
     public void UpdateResLabel()
     {
-        resolutionLabel.text = resolutions[selectedResolution].horizontal.ToString() + " x " + resolutions[selectedResolution].vertical.ToString();
+        resolutionLabel.text = resolutions[_selectedResolution].horizontal.ToString() + " x " + resolutions[_selectedResolution].vertical.ToString();
     }
 
     public void ApplyGraphics()
@@ -103,7 +103,7 @@ public class OptionsScreen : MonoBehaviour
             QualitySettings.vSyncCount = 0;
         }
         
-        Screen.SetResolution(resolutions[selectedResolution].horizontal, resolutions[selectedResolution].vertical, fullscreenToggle.isOn);
+        Screen.SetResolution(resolutions[_selectedResolution].horizontal, resolutions[_selectedResolution].vertical, fullscreenToggle.isOn);
     }
 
     public void SetMasterVolume()
