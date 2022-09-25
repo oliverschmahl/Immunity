@@ -31,5 +31,11 @@ namespace Managers
             Destroy(bacteria);
             OnBacteriaListChanged?.Invoke(bacteriaList);
         }
+
+        public void AddBacteria(GameObject bacteria)
+        {
+            bacteriaList.Add(bacteria);
+            OnBacteriaListChanged?.Invoke(bacteriaList);
+        }
     }
 }

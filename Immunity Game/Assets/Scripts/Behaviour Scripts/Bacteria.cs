@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using Managers;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Behaviour_Scripts
 {
@@ -9,21 +11,38 @@ namespace Behaviour_Scripts
         [SerializeField, Range(1f, 5f)] private float rotationSpeed = 2f;
         [SerializeField, Range(100f, 1000f)] private float randomTargetDistance = 500f;
         [SerializeField, Range(10f, 1000f)] private float visionDistance = 200f;
-        [SerializeField] private float health = 10f;
+        [SerializeField] private int damage = 5;
 
-        [SerializeField] private GameObject gameCanvas;
-    
+        // internal variables
+        private GameObject[] _cellList;
+
         private Vector3 _target = new(0f, 0f, 0f);
         private readonly Vector3[] _worldCorners = new Vector3[4];
 
-        void Start()
+        private void Awake()
         {
-            LookForCell(transform);
-            gameCanvas.GetComponent<RectTransform>().GetWorldCorners(_worldCorners);
+            CellManager.OnCellListChanged += CellListChanged;
         }
 
-        void Update()
+        private void CellListChanged(List<GameObject> cellList)
         {
+            _cellList = cellList.ToArray();
+        }
+
+        private void OnDestroy()
+        {
+            CellManager.OnCellListChanged -= CellListChanged;
+        }
+        
+        private void Start()
+        {
+            LookForCell(transform);
+            GameManager.Instance.playableArea.GetWorldCorners(_worldCorners);
+        }
+
+        private void Update()
+        {
+            if (GameManager.Instance.IsPaused) return;
             // Movement code
             transform.position += transform.up * (Time.deltaTime * movementSpeed);
 
@@ -50,11 +69,11 @@ namespace Behaviour_Scripts
 
         private void LookForCell(Transform bacteriaTransform)
         {
+            if (_cellList == null) return;
             // find the closest cell to the bacteria.
-            GameObject[] cells = GameObject.FindGameObjectsWithTag("Cell");
             float smallestDistance = Mathf.Infinity;
             GameObject closestCell = null;
-            foreach (GameObject cell in cells)
+            foreach (GameObject cell in _cellList)
             {
                 Vector3 difference = cell.transform.position - bacteriaTransform.position;
                 float distance = difference.sqrMagnitude;
@@ -87,11 +106,15 @@ namespace Behaviour_Scripts
                 0f
             );
         }
-
-        public void Damage(float damage)
+        
+        private void OnTriggerEnter2D(Collider2D col) 
         {
-            health -= damage;
-            if (health <= 0) BacteriaManager.Instance.RemoveBacteria(gameObject);
+            Collider2D collidingInstance = col;
+
+            if (!collidingInstance.CompareTag("Cell")) return;
+            if (collidingInstance.GetComponent<Health>() == null) return;
+            collidingInstance.GetComponent<Health>().TakeDamage(damage);
+            Debug.Log(collidingInstance + " Is attacking");
         }
     }
 }

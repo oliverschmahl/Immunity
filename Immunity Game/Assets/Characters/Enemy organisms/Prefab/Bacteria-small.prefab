@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4898126210772547318}
   - component: {fileID: 4898126210772547317}
   m_Layer: 0
-  m_Name: bacteria_small
+  m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 4898126210772547319}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.124216095, y: 0.124216095, z: 0.124216095}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4898126210892204316}
@@ -113,7 +113,7 @@ Transform:
   m_GameObject: {fileID: 4898126210892204312}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 1, y: -1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4898126210772547318}
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7768cf4cfa684f70a1be0d0090c2745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 50
 --- !u!50 &4898126210892204318
 Rigidbody2D:
   serializedVersion: 4
@@ -189,10 +189,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4898126210892204312}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04213ed7435b0426f8a9ee9f4877dba6, type: 3}
+  m_Script: {fileID: 11500000, guid: ea77eac938cdd4cd6b1090f10a7e338b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSpeed: 75
+  rotationSpeed: 2
+  randomTargetDistance: 500
+  visionDistance: 200
   damage: 5
-  speed: 1.5
-  data: {fileID: 11400000, guid: c6f0ca7f05adb458b99bb4e9b0487c8b, type: 2}
-  defenseOrganism: {fileID: 0}
+  playableArea: {fileID: 0}

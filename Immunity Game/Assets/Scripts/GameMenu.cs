@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,28 +9,18 @@ public class GameMenu : MonoBehaviour
     public string mainMenu, firstLevel, secondLevel, thirdLevel, fourthLevel, fithLevel;
     public GameObject optionsScreen, menuScreen;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
     /*Opens Game Menu*/
     public void OpenMenu()
     {
         menuScreen.SetActive(true);
+        GameManager.Instance.isPaused = menuScreen.activeSelf;
     }
     
     /*Closes Game Menu*/
     public void CloseMenu()
     {
         menuScreen.SetActive(false);
+        GameManager.Instance.isPaused = menuScreen.activeSelf;
     }
     
     /*Opens the options menu*/

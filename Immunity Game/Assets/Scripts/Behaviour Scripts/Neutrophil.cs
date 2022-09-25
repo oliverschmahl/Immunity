@@ -11,11 +11,10 @@ namespace Behaviour_Scripts
         // Serialized fields
         [SerializeField, Range(10f, 300f)] private float movementSpeed = 50f;
         [SerializeField, Range(0.1f, 5f)] private float rotationSpeed = 0.5f;
-        [SerializeField] private float damage = 100f;
+        [SerializeField] private int damage = 100;
         [SerializeField, Range(10f, 200f)] private float damageRange = 50f;
         [SerializeField, Range(10f, 200f)] private float randomMovementRangeBeforeDetonation = 50f;
         [SerializeField, Range(0.1f, 20f)] private float shakeStrength = 0.5f;
-        [SerializeField] private GameObject gameCanvas;
 
         private GameObject[] _bacteria;
         private GameObject[] _cells;
@@ -51,7 +50,7 @@ namespace Behaviour_Scripts
 
         private void Start()
         {
-            gameCanvas.GetComponent<RectTransform>().GetWorldCorners(_worldCorners);
+            GameManager.Instance.playableArea.GetWorldCorners(_worldCorners);
             Vector3 neutrophilPosition = transform.position;
             _target = new Vector3(
                 Mathf.Clamp(
@@ -72,6 +71,7 @@ namespace Behaviour_Scripts
 
         private void Update()
         {
+            if (GameManager.Instance.IsPaused) return;
             var neutrophilTransform = transform;
             var neutrophilPosition = neutrophilTransform.position;
             var neutrophilUp = neutrophilTransform.up;
@@ -103,7 +103,7 @@ namespace Behaviour_Scripts
             {
                 foreach (GameObject bacterium in _bacteria)
                 {
-                    if (Vector2.Distance(neutrophilPosition, bacterium.transform.position) < damageRange) bacterium.GetComponent<Bacteria>().Damage(damage);
+                    if (Vector2.Distance(neutrophilPosition, bacterium.transform.position) < damageRange) bacterium.GetComponent<Health>().TakeDamage(damage);
                 }
 
                 _hasExploded = true;

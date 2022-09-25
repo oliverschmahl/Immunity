@@ -9,7 +9,7 @@ namespace Behaviour_Scripts
         // Serialized fields
         [SerializeField, Range(10f, 300f)] private float movementSpeed = 50f;
         [SerializeField, Range(0.1f, 5f)] private float rotationSpeed = 0.5f;
-
+        [SerializeField] private int killsLeft = 100;
         
         private GameObject[] _bacteria;
         private GameObject _target;
@@ -37,6 +37,9 @@ namespace Behaviour_Scripts
 
         void Update()
         {
+            if (GameManager.Instance.IsPaused) return;
+            if (killsLeft <= 0) return;
+            if (_bacteria == null || _bacteria.Length <= 0) return;
             FindTarget();
             if (_target)
             {
@@ -58,6 +61,7 @@ namespace Behaviour_Scripts
                 if (distanceToTarget < 30f)
                 {
                     BacteriaManager.Instance.RemoveBacteria(_target);
+                    killsLeft -= 1;
                     FindTarget();
                 }
             }
