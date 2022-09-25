@@ -14,11 +14,11 @@ public class Bacteria : MonoBehaviour
 
     [SerializeField] private BacteriaData data;
     
-    [SerializeField] private GameObject defenseOrganism;
+    private GameObject defenseOrganism;
     
     void Start()
     {
-        defenseOrganism = GameObject.FindWithTag("DefenceOrganism"); //TODO: Merge with tobis managers - here a defense manager
+        defenseOrganism = GameObject.FindWithTag("DefenseOrganism"); //TODO: Merge with tobis managers - here a defense manager
         setEnemyValues();
     }
 

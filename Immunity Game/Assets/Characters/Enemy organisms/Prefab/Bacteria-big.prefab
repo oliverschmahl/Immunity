@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8722316018378355721}
   m_Layer: 0
   m_Name: Bacteria-big
-  m_TagString: Untagged
+  m_TagString: Bacteria
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
