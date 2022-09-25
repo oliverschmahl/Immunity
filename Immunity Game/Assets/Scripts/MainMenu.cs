@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public string firstLevel, secondLevel, thirdLevel, fourthLevel, fithLevel;
+    public string firstLevel;
     public GameObject optionsScreen;
 
     /*Starts the game by playing the first level scene*/
