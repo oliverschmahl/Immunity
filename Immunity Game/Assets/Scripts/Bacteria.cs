@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Bacteria : MonoBehaviour
 {
     // Start is called before the first frame update
 
@@ -12,26 +12,24 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private float speed = 1.5f;
 
-    [SerializeField] private EnemyData data;
+    [SerializeField] private BacteriaData data;
     
-    [SerializeField] private GameObject defenseOrganism; //Todo: this should not be serializefield. It should be set in start().
+    [SerializeField] private GameObject defenseOrganism;
     
     void Start()
     {
-        defenseOrganism = GameObject.FindWithTag("DefenceOrganism");
-        Debug.Log("DefenseOrganism: " + defenseOrganism.name);
+        defenseOrganism = GameObject.FindWithTag("DefenceOrganism"); //TODO: Merge with tobis managers - here a defense manager
         setEnemyValues();
     }
 
     // Update is called once per frame
     void Update()
     {
-        BacteriaSmall();
+        BacteriaSwarm();
     }
 
-    private void BacteriaSmall()
+    private void BacteriaSwarm() 
     {
-        Debug.Log("Bacteria is moving");
         transform.position =
             Vector2.MoveTowards(transform.position, defenseOrganism.transform.position, speed * Time.deltaTime); //TODO: Use tobias' move method
     }
