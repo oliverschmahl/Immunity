@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bacteria
   - Cell
+  - DefenseOrganism
   layers:
   - Default
   - TransparentFX
