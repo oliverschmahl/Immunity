@@ -16,7 +16,7 @@ namespace Behaviour_Scripts
         // internal variables
         private GameObject[] _cellList;
 
-        private Vector3 _target = new(0f, 0f, 0f);
+        private Vector3 _target;
         private readonly Vector3[] _worldCorners = new Vector3[4];
 
         private void Awake()
@@ -48,7 +48,7 @@ namespace Behaviour_Scripts
 
             // Rotation code
             // if there is no target gameObject create a random temporary waypoint
-            if (_target.Equals(new Vector3(0f, 0f, 0f)))
+            if (_target.magnitude == 0)
             {
                 CreateRandomTarget(transform.position);
             }
@@ -56,7 +56,6 @@ namespace Behaviour_Scripts
             // if target is within distance search for new 
             if (Vector3.Distance(transform.position, _target) < visionDistance)
             {
-            
                 CreateRandomTarget(transform.position);
                 LookForCell(transform);
             }

@@ -16,7 +16,7 @@ namespace Managers
         public GameObject neutrophil;
         public GameObject bacteriaSmall;
         public GameObject bacteriaLarge;
-        
+
         private void Awake()
         {
             Instance = this;

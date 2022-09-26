@@ -99,17 +99,18 @@ namespace Behaviour_Scripts
             }
 
             if (!selfDestructTimerReached) return;
-            if (!_hasExploded)
-            {
-                foreach (GameObject bacterium in _bacteria)
-                {
-                    if (Vector2.Distance(neutrophilPosition, bacterium.transform.position) < damageRange) bacterium.GetComponent<Health>().TakeDamage(damage);
-                }
+            if (!_hasExploded) Explode(neutrophilPosition);
+        }
 
-                _hasExploded = true;
+        private void Explode(Vector3 neutrophilPosition)
+        {
+            gameObject.GetComponentInChildren<SpriteRenderer>().sprite = Resources.Load<Sprite>("Characters/Defense Organisms/Neutrophil_Explode");
+            foreach (GameObject bacterium in _bacteria)
+            {
+                if (Vector2.Distance(neutrophilPosition, bacterium.transform.position) < damageRange) bacterium.GetComponent<Health>().TakeDamage(damage);
             }
-            
-            
+
+            _hasExploded = true;
         }
     }
 }
