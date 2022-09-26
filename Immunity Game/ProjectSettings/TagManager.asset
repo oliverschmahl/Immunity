@@ -11,6 +11,7 @@ TagManager:
   - Macrophage
   - T Cell
   - Neutrophil
+  - StoryMusic
   layers:
   - Default
   - TransparentFX
