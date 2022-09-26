@@ -4746,12 +4746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e08eabf6bfa6d4a49a15ed2745a0dbaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenu: Main_Menu
-  firstLevel: Level_1
-  secondLevel: 
-  thirdLevel: 
-  fourthLevel: 
-  fithLevel: 
+  mainMenu: MainMenu
   optionsScreen: {fileID: 1070089570}
   menuScreen: {fileID: 2013083871}
 --- !u!114 &1964459066
@@ -4938,12 +4933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e08eabf6bfa6d4a49a15ed2745a0dbaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenu: Main_Menu
-  firstLevel: 
-  secondLevel: 
-  thirdLevel: 
-  fourthLevel: 
-  fithLevel: 
+  mainMenu: MainMenu
   optionsScreen: {fileID: 1070089570}
   menuScreen: {fileID: 2013083871}
 --- !u!1 &2064967176
