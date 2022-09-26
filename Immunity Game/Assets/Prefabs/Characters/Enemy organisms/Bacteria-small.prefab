@@ -112,7 +112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4898126210892204312}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -192,9 +192,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea77eac938cdd4cd6b1090f10a7e338b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 75
-  rotationSpeed: 2
-  randomTargetDistance: 500
-  visionDistance: 200
+  movementSpeed: 50
+  rotationSpeed: 3.5
+  randomTargetDistance: 1400
+  visionDistance: 100
   damage: 5
-  playableArea: {fileID: 0}

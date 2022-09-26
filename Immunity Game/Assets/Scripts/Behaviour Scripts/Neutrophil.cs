@@ -104,6 +104,7 @@ namespace Behaviour_Scripts
 
         private void Explode(Vector3 neutrophilPosition)
         {
+            gameObject.GetComponentInChildren<ParticleSystem>().Play();
             gameObject.GetComponentInChildren<SpriteRenderer>().sprite = Resources.Load<Sprite>("Characters/Defense Organisms/Neutrophil_Explode");
             foreach (GameObject bacterium in _bacteria)
             {
