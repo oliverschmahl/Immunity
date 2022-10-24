@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
-using Object = UnityEngine.Object;
 
 namespace Managers
 {
@@ -12,10 +8,25 @@ namespace Managers
         
         public bool isPaused;
         public RectTransform playableArea;
-        public GameObject macrophage;
-        public GameObject neutrophil;
-        public GameObject bacteriaSmall;
-        public GameObject bacteriaLarge;
+        
+        [SerializeField] private CellManager cellManager;
+        [SerializeField] private GameObject cellPrefab;
+
+        [SerializeField] private MacrophageManager macrophageManager;
+        [SerializeField] private GameObject macrophagePrefab;
+        
+        [SerializeField] private BacteriaManager bacteriaManager;
+        [SerializeField] private GameObject bacteriaSmallPrefab;
+        [SerializeField] private GameObject bacteriaLargePrefab;
+        
+        [SerializeField] private AntibodiesManager antibodiesManager;
+        [SerializeField] private GameObject antibodiesPrefab;
+        
+        [SerializeField] private NeutrophilManager neutrophilManager;
+        [SerializeField] private GameObject neutrophilPrefab;
+        
+        [SerializeField] private ComplementProteinManager complementProteinManager;
+        [SerializeField] private GameObject complementProteinPrefab;
 
         private void Awake()
         {
@@ -27,15 +38,5 @@ namespace Managers
             get => isPaused;
             set => isPaused = value;
         }
-
-        public RectTransform PlayableArea => playableArea;
-
-        public GameObject Macrophage => macrophage;
-
-        public GameObject Neutrophil => neutrophil;
-
-        public GameObject BacteriaSmall => bacteriaSmall;
-
-        public GameObject BacteriaLarge => bacteriaLarge;
     }
 }
