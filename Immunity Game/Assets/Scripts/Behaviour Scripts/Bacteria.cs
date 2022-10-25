@@ -13,6 +13,8 @@ namespace Behaviour_Scripts
         [SerializeField, Range(10f, 1000f)] private float visionDistance = 200f;
         [SerializeField] private int damage = 5;
 
+        private bool capturedStopBehaviour = false;
+
         // internal variables
         private GameObject[] _cellList;
 
@@ -37,12 +39,13 @@ namespace Behaviour_Scripts
         private void Start()
         {
             LookForCell(transform);
-            GameManager.Instance.playableArea.GetWorldCorners(_worldCorners);
+            GameManager.instance.playableArea.GetWorldCorners(_worldCorners);
         }
 
         private void Update()
         {
-            if (GameManager.Instance.IsPaused) return;
+            if (GameManager.instance.IsPaused) return;
+            if (capturedStopBehaviour) return;
             // Movement code
             var bacteriaTransform = transform;
             var bacteriaPosition = bacteriaTransform.position;

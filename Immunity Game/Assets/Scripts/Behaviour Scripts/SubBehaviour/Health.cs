@@ -21,9 +21,6 @@ public class Health : MonoBehaviour
                 case "Cell": 
                     CellManager.Instance.RemoveCell(gameObject);
                     break;
-                case "DefenseOrganism":
-                    DefenseOrganismManager.Instance.RemoveDefenseOrganism(gameObject);
-                    break;
             }
         }
     }

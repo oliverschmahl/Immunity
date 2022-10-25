@@ -13,6 +13,9 @@ namespace Behaviour_Scripts
         
         private GameObject[] _bacteria;
         private GameObject _target;
+        
+        public Vector2 spawnTarget;
+        private bool reachedSpawnTarget = false;
 
         private void Awake()
         {
@@ -37,9 +40,22 @@ namespace Behaviour_Scripts
 
         void Update()
         {
-            if (GameManager.Instance.IsPaused) return;
+            if (GameManager.instance.IsPaused) return;
             if (killsLeft <= 0) return;
-            if (_bacteria == null || _bacteria.Length <= 0) return;
+            if (!reachedSpawnTarget)
+            {
+                float step = movementSpeed * Time.deltaTime;
+                var _transform = transform;
+                var _pos = transform.position;
+                Vector2 _posV2 = 
+                    _pos = Vector2.MoveTowards(_pos, spawnTarget, step);
+                
+                _transform.position = _pos;
+                transform.up = spawnTarget - _posV2;
+                if (Vector2.Distance(transform.position, spawnTarget) < 5f) reachedSpawnTarget = true;
+                return;
+            }
+            if (_bacteria is not {Length: > 0}) return;
             FindTarget();
             if (_target)
             {
@@ -58,7 +74,7 @@ namespace Behaviour_Scripts
                 transform.up = newDirection;
 
                 float distanceToTarget = Vector2.Distance(macrophagePosition, targetPosition);
-                if (distanceToTarget < 30f)
+                if (distanceToTarget < 60f)
                 {
                     BacteriaManager.Instance.RemoveBacteria(_target);
                     killsLeft -= 1;

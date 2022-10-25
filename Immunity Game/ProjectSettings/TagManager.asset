@@ -8,6 +8,9 @@ TagManager:
   - Cell
   - Complement Protein
   - Antibodies
+  - Macrophage
+  - T Cell
+  - Neutrophil
   layers:
   - Default
   - TransparentFX

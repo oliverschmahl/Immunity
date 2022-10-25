@@ -13,7 +13,7 @@ public class MenuManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             menuScreen.SetActive(!menuScreen.activeSelf);
-            GameManager.Instance.isPaused = menuScreen.activeSelf;
+            GameManager.instance.isPaused = menuScreen.activeSelf;
         }
     }
 }

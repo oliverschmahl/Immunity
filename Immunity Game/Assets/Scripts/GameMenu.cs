@@ -13,14 +13,14 @@ public class GameMenu : MonoBehaviour
     public void OpenMenu()
     {
         menuScreen.SetActive(true);
-        GameManager.Instance.isPaused = menuScreen.activeSelf;
+        GameManager.instance.isPaused = menuScreen.activeSelf;
     }
     
     /*Closes Game Menu*/
     public void CloseMenu()
     {
         menuScreen.SetActive(false);
-        GameManager.Instance.isPaused = menuScreen.activeSelf;
+        GameManager.instance.isPaused = menuScreen.activeSelf;
     }
     
     /*Opens the options menu*/

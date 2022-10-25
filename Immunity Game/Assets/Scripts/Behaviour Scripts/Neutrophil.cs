@@ -50,7 +50,7 @@ namespace Behaviour_Scripts
 
         private void Start()
         {
-            GameManager.Instance.playableArea.GetWorldCorners(_worldCorners);
+            GameManager.instance.playableArea.GetWorldCorners(_worldCorners);
             Vector3 neutrophilPosition = transform.position;
             _target = new Vector3(
                 Mathf.Clamp(
@@ -71,7 +71,7 @@ namespace Behaviour_Scripts
 
         private void Update()
         {
-            if (GameManager.Instance.IsPaused) return;
+            if (GameManager.instance.IsPaused) return;
             var neutrophilTransform = transform;
             var neutrophilPosition = neutrophilTransform.position;
             var neutrophilUp = neutrophilTransform.up;

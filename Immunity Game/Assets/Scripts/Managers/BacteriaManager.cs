@@ -37,5 +37,10 @@ namespace Managers
             bacteriaList.Add(bacteria);
             OnBacteriaListChanged?.Invoke(bacteriaList);
         }
+
+        public void Spawn()
+        {
+            
+        }
     }
 }

@@ -1,42 +1,54 @@
+using System;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
+using UnityEngine.Internal;
 
 namespace Managers
 {
     public class GameManager : MonoBehaviour
     {
-        public static GameManager Instance;
+        public static GameManager instance;
         
         public bool isPaused;
         public RectTransform playableArea;
-        
-        [SerializeField] private CellManager cellManager;
-        [SerializeField] private GameObject cellPrefab;
 
-        [SerializeField] private MacrophageManager macrophageManager;
-        [SerializeField] private GameObject macrophagePrefab;
-        
-        [SerializeField] private BacteriaManager bacteriaManager;
-        [SerializeField] private GameObject bacteriaSmallPrefab;
-        [SerializeField] private GameObject bacteriaLargePrefab;
-        
-        [SerializeField] private AntibodiesManager antibodiesManager;
-        [SerializeField] private GameObject antibodiesPrefab;
-        
-        [SerializeField] private NeutrophilManager neutrophilManager;
-        [SerializeField] private GameObject neutrophilPrefab;
-        
-        [SerializeField] private ComplementProteinManager complementProteinManager;
-        [SerializeField] private GameObject complementProteinPrefab;
+        [SerializeField] private string selectedOrganism = "null"; 
 
         private void Awake()
         {
-            Instance = this;
+            instance = this;
         }
 
         public bool IsPaused
         {
             get => isPaused;
             set => isPaused = value;
+        }
+
+        public void SetSelectedOrganism(string organism)
+        {
+            selectedOrganism = organism;
+        }
+
+        private void Update()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (selectedOrganism.Equals("null")) return;
+                Vector3 worldLocation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                worldLocation.z = 10;
+                switch (selectedOrganism)
+                {
+                    case "T Cell":
+                        TcellManager.Instance.Spawn(new Vector2(0f, 0f) ,worldLocation);
+                        break;
+                    case "Macrophage":
+                        MacrophageManager.Instance.Spawn(new Vector2(0f,0f), worldLocation);
+                        break;
+                    case "Neutrophil":
+                        break;
+                }
+            }
         }
     }
 }

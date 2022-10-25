@@ -20,14 +20,14 @@ public class BacteriaSpawner : MonoBehaviour
     void Start()
     {
         _spawnPoint = gameObject.transform.position;
-        GameManager.Instance.playableArea.GetWorldCorners(_worldCorners);
+        GameManager.instance.playableArea.GetWorldCorners(_worldCorners);
         StartCoroutine(SpawnBacterias(swarmBacteriaSmallInterval, bacteriaSmallPrefab));
         StartCoroutine(SpawnBacterias(swarmBacteriaBigInterval, bacteriaBigPrefab));
     }
 
     private IEnumerator SpawnBacterias(float interval, GameObject bacteria)
     {
-        yield return new WaitWhile(() => GameManager.Instance.isPaused);
+        yield return new WaitWhile(() => GameManager.instance.isPaused);
         yield return new WaitForSeconds(interval);
         
         // Randomness in spawn location around spawn-point
