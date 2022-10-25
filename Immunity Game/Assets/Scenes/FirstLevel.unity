@@ -335,6 +335,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1915084627}
+  - {fileID: 70301797}
   - {fileID: 1022144265}
   - {fileID: 2035978469}
   - {fileID: 1313645446}
@@ -359,6 +360,53 @@ MonoBehaviour:
   isPaused: 0
   playableArea: {fileID: 1964459064}
   selectedOrganism: 
+--- !u!1 &70301796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 70301797}
+  - component: {fileID: 70301798}
+  m_Layer: 0
+  m_Name: BacteriaLargeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &70301797
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70301796}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 42396970}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &70301798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70301796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa064f51bedc4e4a85d3aedc847a7873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledBacterias: []
+  bacteriaLargePrefab: {fileID: 2962982351549213880, guid: 2b75c4c83d9489a4c975e98cad09f288, type: 3}
+  pooledAmount: 2000
 --- !u!1 &96337705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1524,7 +1572,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 42396970}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &502841208
 PrefabInstance:
@@ -3008,7 +3056,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 42396970}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1022144263
 GameObject:
@@ -3053,7 +3101,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 42396970}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1022393166
 GameObject:
@@ -4179,7 +4227,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 42396970}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1340574112
 GameObject:
@@ -5256,7 +5304,7 @@ GameObject:
   - component: {fileID: 1915084627}
   - component: {fileID: 1915084626}
   m_Layer: 0
-  m_Name: BacteriaManager
+  m_Name: BacteriaSmallManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5274,7 +5322,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e0aad64c70c46e182040993d9f4f39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bacteriaList: []
+  pooledBacterias: []
+  bacteriaSmallPrefab: {fileID: 4898126210892204312, guid: e354abff6ea090f4d8a2df609d5c5a38, type: 3}
+  pooledAmount: 5000
 --- !u!4 &1915084627
 Transform:
   m_ObjectHideFlags: 0
@@ -5938,7 +5988,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 42396970}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2064967176
 GameObject:
@@ -6020,7 +6070,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 42396970}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2139686302
 GameObject:

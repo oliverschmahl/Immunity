@@ -70,10 +70,10 @@ namespace Behaviour_Scripts
             var targetDirection = (_target - bacteriaPosition).normalized;
             var newDirection = Vector2.Lerp(bacteriaUp, targetDirection, rotationSpeed * Time.deltaTime);
             
-            if (bacteriaPosition.x > _worldCorners[2].x + 100f) BacteriaManager.Instance.RemoveBacteria(gameObject);
-            if (bacteriaPosition.x < _worldCorners[0].x + -100f) BacteriaManager.Instance.RemoveBacteria(gameObject);
-            if (bacteriaPosition.y > _worldCorners[2].y + 100f) BacteriaManager.Instance.RemoveBacteria(gameObject);
-            if (bacteriaPosition.y < _worldCorners[0].y + -100f) BacteriaManager.Instance.RemoveBacteria(gameObject);
+            if (bacteriaPosition.x > _worldCorners[2].x + 100f) gameObject.SetActive(false);
+            if (bacteriaPosition.x < _worldCorners[0].x + -100f) gameObject.SetActive(false);
+            if (bacteriaPosition.y > _worldCorners[2].y + 100f) gameObject.SetActive(false);
+            if (bacteriaPosition.y < _worldCorners[0].y + -100f) gameObject.SetActive(false);
             
             transform.up = newDirection;
         }

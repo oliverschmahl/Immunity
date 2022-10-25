@@ -28,13 +28,11 @@ namespace Behaviour_Scripts
 
         private void Awake()
         {
-            BacteriaManager.OnBacteriaListChanged += BacteriaListChanged;
             CellManager.OnCellListChanged += CellListChanged;
         }
 
         private void OnDestroy()
         {
-            BacteriaManager.OnBacteriaListChanged -= BacteriaListChanged;
             CellManager.OnCellListChanged -= CellListChanged;
         }
 

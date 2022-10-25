@@ -17,17 +17,6 @@ namespace Managers
         {
             Instance = this;
         }
-
-        private void Start()
-        {
-            GameObject[] cells = GameObject.FindGameObjectsWithTag("T Cell");
-            foreach (GameObject cell in cells)
-            {
-                tcellList.Add(cell);
-            }
-            OnTcellListChanged?.Invoke(tcellList);
-        }
-
         public void RemoveTcell(GameObject cell)
         {
             tcellList.Remove(cell);
@@ -44,7 +33,7 @@ namespace Managers
         public void Spawn(Vector2 location, Vector2 targetLocation)
         {
             var spawned = Instantiate(tcellPrefab, location, Quaternion.identity);
-            spawned.transform.parent = TcellManager.Instance.transform;
+            spawned.transform.parent = Instance.transform;
             spawned.GetComponent<Tcell>().spawnTarget = targetLocation; 
             AddTcell(spawned);
         }
