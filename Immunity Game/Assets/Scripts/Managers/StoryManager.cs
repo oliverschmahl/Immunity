@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class StoryManager : MonoBehaviour
 {
     public string nextScene;
-
+    
     // Update is called once per frame
     void Update()
     {
