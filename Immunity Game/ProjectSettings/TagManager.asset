@@ -6,11 +6,15 @@ TagManager:
   tags:
   - Bacteria
   - Cell
+<<<<<<< HEAD
   - Complement Protein
   - Antibodies
   - Macrophage
   - T Cell
   - Neutrophil
+=======
+  - StoryMusic
+>>>>>>> Story
   layers:
   - Default
   - TransparentFX
