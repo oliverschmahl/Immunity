@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameMenu : MonoBehaviour
 {
-    public string mainMenu;
+    private string mainMenu = "Scenes/MainMenu";
     public GameObject optionsScreen, menuScreen;
 
     /*Opens Game Menu*/

@@ -7,14 +7,20 @@ TagManager:
   - Bacteria
   - Cell
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> main
   - Complement Protein
   - Antibodies
   - Macrophage
   - T Cell
   - Neutrophil
+<<<<<<< HEAD
 =======
   - StoryMusic
 >>>>>>> Story
+=======
+>>>>>>> main
   layers:
   - Default
   - TransparentFX
