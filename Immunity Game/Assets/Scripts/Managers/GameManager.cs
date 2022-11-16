@@ -1,25 +1,22 @@
 using System;
-using System.Collections.Generic;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
-using UnityEngine.Serialization;
-using Object = UnityEngine.Object;
+using UnityEngine.Internal;
 
 namespace Managers
 {
     public class GameManager : MonoBehaviour
     {
-        public static GameManager Instance;
+        public static GameManager instance;
         
         public bool isPaused;
         public RectTransform playableArea;
-        public GameObject macrophage;
-        public GameObject neutrophil;
-        public GameObject bacteriaSmall;
-        public GameObject bacteriaLarge;
-        
+
+        [SerializeField] private string selectedOrganism = "null"; 
+
         private void Awake()
         {
-            Instance = this;
+            instance = this;
         }
 
         public bool IsPaused
@@ -28,14 +25,30 @@ namespace Managers
             set => isPaused = value;
         }
 
-        public RectTransform PlayableArea => playableArea;
+        public void SetSelectedOrganism(string organism)
+        {
+            selectedOrganism = organism;
+        }
 
-        public GameObject Macrophage => macrophage;
-
-        public GameObject Neutrophil => neutrophil;
-
-        public GameObject BacteriaSmall => bacteriaSmall;
-
-        public GameObject BacteriaLarge => bacteriaLarge;
+        private void Update()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (selectedOrganism.Equals("null")) return;
+                Vector3 worldLocation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                worldLocation.z = 10;
+                switch (selectedOrganism)
+                {
+                    case "T Cell":
+                        TcellManager.Instance.Spawn(new Vector2(0f, 0f) ,worldLocation);
+                        break;
+                    case "Macrophage":
+                        MacrophageManager.Instance.Spawn(new Vector2(0f,0f), worldLocation);
+                        break;
+                    case "Neutrophil":
+                        break;
+                }
+            }
+        }
     }
 }
