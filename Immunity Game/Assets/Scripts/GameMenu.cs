@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,12 +13,14 @@ public class GameMenu : MonoBehaviour
     public void OpenMenu()
     {
         menuScreen.SetActive(true);
+        GameManager.instance.isPaused = menuScreen.activeSelf;
     }
     
     /*Closes Game Menu*/
     public void CloseMenu()
     {
         menuScreen.SetActive(false);
+        GameManager.instance.isPaused = menuScreen.activeSelf;
     }
     
     /*Opens the options menu*/

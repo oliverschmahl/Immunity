@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Managers;
 using UnityEngine;
 
@@ -9,34 +11,42 @@ namespace Behaviour_Scripts
         // Serialized fields
         [SerializeField, Range(10f, 300f)] private float movementSpeed = 50f;
         [SerializeField, Range(0.1f, 5f)] private float rotationSpeed = 0.5f;
-
+        [SerializeField] private int killsLeft = 100;
         
+        private List<GameObject> _bacteriaSmall;
+        private List<GameObject> _bacteriaLarge;
         private GameObject[] _bacteria;
         private GameObject _target;
+        
+        public Vector2 spawnTarget;
+        private bool _reachedSpawnTarget = false;
 
-        private void Awake()
+        private void Start()
         {
-            BacteriaManager.OnBacteriaListChanged += BacteriaListChanged;
-        }
+            _bacteriaSmall = BacteriaSmallManager.Instance.pooledBacterias;
+            _bacteriaLarge = BacteriaLargeManager.Instance.pooledBacterias;
 
-        private void OnDestroy()
-        {
-            BacteriaManager.OnBacteriaListChanged -= BacteriaListChanged;
-        }
-
-        private void BacteriaListChanged(List<GameObject> bacteriaList)
-        {
-            _bacteria = bacteriaList.ToArray();
-        }
-
-
-        void Start()
-        {
-            FindTarget();
+            _bacteria = _bacteriaLarge.Concat(_bacteriaSmall).ToArray();
         }
 
         void Update()
         {
+            if (GameManager.instance.IsPaused) return;
+            if (killsLeft <= 0) return;
+            if (!_reachedSpawnTarget)
+            {
+                float step = movementSpeed * Time.deltaTime;
+                var _transform = transform;
+                var _pos = transform.position;
+                Vector2 _posV2 = 
+                    _pos = Vector2.MoveTowards(_pos, spawnTarget, step);
+                
+                _transform.position = _pos;
+                transform.up = spawnTarget - _posV2;
+                if (Vector2.Distance(transform.position, spawnTarget) < 5f) _reachedSpawnTarget = true;
+                return;
+            }
+            if (_bacteria is not {Length: > 0}) return;
             FindTarget();
             if (_target)
             {
@@ -55,9 +65,10 @@ namespace Behaviour_Scripts
                 transform.up = newDirection;
 
                 float distanceToTarget = Vector2.Distance(macrophagePosition, targetPosition);
-                if (distanceToTarget < 30f)
+                if (distanceToTarget < 60f)
                 {
-                    BacteriaManager.Instance.RemoveBacteria(_target);
+                    _target.SetActive(false);
+                    killsLeft -= 1;
                     FindTarget();
                 }
             }
