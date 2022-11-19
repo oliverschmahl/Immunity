@@ -1,129 +1,86 @@
+using System;
 using System.Collections.Generic;
 using Managers;
+using UnityEditor.UIElements;
 using UnityEngine;
-using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace Behaviour_Scripts
 {
     public class Bacteria : MonoBehaviour
     {
-        [SerializeField, Range(1f, 200f)] private float movementSpeed = 75f;
-        [SerializeField, Range(1f, 5f)] private float rotationSpeed = 2f;
-        [SerializeField, Range(100f, 2000f)] private float randomTargetDistance = 500f;
-        [SerializeField, Range(10f, 1000f)] private float visionDistance = 200f;
-        [SerializeField] private int damage = 5;
-
-        private bool capturedStopBehaviour = false;
-
-        // internal variables
-        private GameObject[] _cellList;
-
-        private Vector3 _target;
-        private readonly Vector3[] _worldCorners = new Vector3[4];
-
-        private void Awake()
-        {
-            CellManager.OnCellListChanged += CellListChanged;
-        }
-
-        private void CellListChanged(List<GameObject> cellList)
-        {
-            _cellList = cellList.ToArray();
-        }
-
-        private void OnDestroy()
-        {
-            CellManager.OnCellListChanged -= CellListChanged;
-        }
+        public float maxSpeed = 1;
+        public float steerStrength = 1;
+        public float wanderStrength = 0.1f;
+        public GameObject targetCell = null;
+        public GameObject visitedCell = null;
+        public float viewRadius = 5f;
+        public int damage = 1;
+        public float damageRange = 0.05f;
         
+        private Vector2 position;
+        private Vector2 velocity;
+        private Vector2 desiredDirection;
+        
+        private Rigidbody2D body;
+        private Collider2D collider2D;
+
         private void Start()
         {
-            LookForCell(transform);
-            GameManager.instance.playableArea.GetWorldCorners(_worldCorners);
+            position = transform.position;
+            body = GetComponent<Rigidbody2D>();
+            
         }
 
         private void Update()
         {
             if (GameManager.instance.IsPaused) return;
-            if (capturedStopBehaviour) return;
-            // Movement code
-            var bacteriaTransform = transform;
-            var bacteriaPosition = bacteriaTransform.position;
-            var bacteriaUp = bacteriaTransform.up;
-            
-            transform.position += bacteriaUp * (Time.deltaTime * movementSpeed);
 
-            // Rotation code
-            // if there is no target gameObject create a random temporary waypoint
-            if (_target.magnitude == 0)
-            {
-                CreateRandomTarget(bacteriaPosition);
-            }
+            LookForTargetCell();
+            if (!targetCell) desiredDirection = (desiredDirection + Random.insideUnitCircle * wanderStrength).normalized;
+            if (targetCell) desiredDirection = ((Vector2)targetCell.transform.position - position).normalized;
 
-            // if target is within distance search for new 
-            if (Vector3.Distance(bacteriaPosition, _target) < visionDistance)
-            {
-                CreateRandomTarget(bacteriaPosition);
-                LookForCell(bacteriaTransform);
-            }
+            var desiredVelocity = desiredDirection * maxSpeed;
+            var desiredTurnSpeed = (desiredVelocity - velocity) * steerStrength;
+            var acceleration = Vector2.ClampMagnitude(desiredTurnSpeed, steerStrength) / 1;
+
+            velocity = Vector2.ClampMagnitude(velocity + acceleration * Time.deltaTime, maxSpeed);
+            position += velocity * Time.deltaTime;
+
+            var angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
+            //transform.SetPositionAndRotation(position, Quaternion.Euler(0,0, angle));
+            body.position = position; 
+            body.SetRotation(Quaternion.Euler(0,0, angle));
             
-            var targetDirection = (_target - bacteriaPosition).normalized;
-            var newDirection = Vector2.Lerp(bacteriaUp, targetDirection, rotationSpeed * Time.deltaTime);
+
             
-            if (bacteriaPosition.x > _worldCorners[2].x + 100f) gameObject.SetActive(false);
-            if (bacteriaPosition.x < _worldCorners[0].x + -100f) gameObject.SetActive(false);
-            if (bacteriaPosition.y > _worldCorners[2].y + 100f) gameObject.SetActive(false);
-            if (bacteriaPosition.y < _worldCorners[0].y + -100f) gameObject.SetActive(false);
             
-            transform.up = newDirection;
         }
 
-        private void LookForCell(Transform bacteriaTransform)
+        private void LookForTargetCell()
         {
-            if (_cellList == null) return;
-            // find the closest cell to the bacteria.
-            var smallestDistance = Mathf.Infinity;
-            GameObject closestCell = null;
-            foreach (var cell in _cellList)
+            if (!targetCell)
             {
-                var difference = cell.transform.position - bacteriaTransform.position;
-                var distance = difference.sqrMagnitude;
-                if (distance < visionDistance && distance < smallestDistance)
+                float smallestDistance = Mathf.Infinity;
+                foreach (GameObject cell in CellManager.Instance.cellList)
                 {
-                    smallestDistance = distance;
-                    closestCell = cell;
+                    float distance = Vector2.Distance(position, cell.transform.position);
+                    if (distance < viewRadius && distance < smallestDistance && cell != visitedCell)
+                    {
+                        targetCell = cell;
+                        smallestDistance = distance;
+                    }
                 }
             }
 
-            if (closestCell)
+            if (targetCell)
             {
-                _target = closestCell.transform.position;
+                if (Vector2.Distance(position, targetCell.transform.position) < damageRange)
+                {
+                    visitedCell = targetCell;
+                    targetCell = null;
+                }
             }
-        }
-
-        private void CreateRandomTarget(Vector3 bacteriaPosition)
-        {
-            _target = new Vector3(
-                Mathf.Clamp(
-                    Random.Range(bacteriaPosition.x - randomTargetDistance, bacteriaPosition.x + randomTargetDistance), 
-                    _worldCorners[0].x + 200f,
-                    _worldCorners[2].x - 200f
-                ),
-                Mathf.Clamp(
-                    Random.Range(bacteriaPosition.y - randomTargetDistance, bacteriaPosition.y + randomTargetDistance),
-                    _worldCorners[0].y + 200f,
-                    _worldCorners[2].y - 200f
-                ),
-                0f
-            );
-        }
-        
-        private void OnTriggerEnter2D(Collider2D col) 
-        {
-            if (!col.CompareTag("Cell")) return;
-            if (col.GetComponent<Health>() == null) return;
-            col.GetComponent<Health>().TakeDamage(damage);
-            Debug.Log(col + " Is attacking");
         }
     }
 }
