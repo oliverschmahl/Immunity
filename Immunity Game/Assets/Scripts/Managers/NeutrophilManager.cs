@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Behaviour_Scripts;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Managers
@@ -8,6 +10,7 @@ namespace Managers
     {
         public static NeutrophilManager Instance;
         public List<GameObject> neutrophilList;
+        public GameObject neutrophilPrefab;
         public static event Action<List<GameObject>> OnNeutrophilListChanged;
 
         private void Awake()
@@ -30,6 +33,20 @@ namespace Managers
             neutrophilList.Remove(cell);
             Destroy(cell);
             OnNeutrophilListChanged?.Invoke(neutrophilList);
+        }
+        
+        public void AddMacrophage(GameObject cell)
+        {
+            neutrophilList.Add(cell);
+            OnNeutrophilListChanged?.Invoke(neutrophilList);
+        }
+
+        public void Spawn(Vector2 location, Vector2 spawnTarget)
+        {
+            var spawned = Instantiate(neutrophilPrefab, location, quaternion.identity);
+            spawned.transform.parent = MacrophageManager.Instance.transform;
+            spawned.GetComponent<Neutrophil>().spawnTarget = spawnTarget;
+            AddMacrophage(spawned);
         }
     }
 }
