@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Managers;
+using Unity.Mathematics;
 using UnityEditor.UIElements;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -12,7 +13,7 @@ namespace Behaviour_Scripts
         public float maxSpeed = 1;
         public float steerStrength = 1;
         public float wanderStrength = 0.1f;
-        public GameObject targetCell = null;
+        public Vector3? targetCell = null;
         public GameObject visitedCell = null;
         public float viewRadius = 5f;
         public int damage = 1;
@@ -21,15 +22,10 @@ namespace Behaviour_Scripts
         private Vector2 position;
         private Vector2 velocity;
         private Vector2 desiredDirection;
-        
-        private Rigidbody2D body;
-        private Collider2D collider2D;
 
         private void Start()
         {
             position = transform.position;
-            body = GetComponent<Rigidbody2D>();
-            
         }
 
         private void Update()
@@ -37,8 +33,23 @@ namespace Behaviour_Scripts
             if (GameManager.instance.IsPaused) return;
 
             LookForTargetCell();
-            if (!targetCell) desiredDirection = (desiredDirection + Random.insideUnitCircle * wanderStrength).normalized;
-            if (targetCell) desiredDirection = ((Vector2)targetCell.transform.position - position).normalized;
+
+            Vector3[] worldCorners = GameManager.instance.GetWorldCorners();
+            Vector3 bottomLeftCorner = worldCorners[0];
+            Vector3 topLeftCorner = worldCorners[1];
+            Vector3 topRightCorner = worldCorners[2];
+            bool outsideRightBorder = position.x > topRightCorner.x - GameManager.instance.playableAreaPadding;
+            bool outsideLeftBorder = position.x < topLeftCorner.x + GameManager.instance.playableAreaPadding;
+            bool outsideBottomBorder = position.y < bottomLeftCorner.y - GameManager.instance.playableAreaPadding;
+            bool outsideTopBorder = position.y > topRightCorner.y + GameManager.instance.playableAreaPadding;
+
+            if (outsideRightBorder || outsideLeftBorder || outsideTopBorder || outsideBottomBorder)
+            {
+                targetCell = new Vector3(Random.Range(topLeftCorner.x, topRightCorner.x), Random.Range(bottomLeftCorner.y, topLeftCorner.y), 0f);
+            }
+            
+            if (targetCell == null) desiredDirection = (desiredDirection + Random.insideUnitCircle * wanderStrength).normalized;
+            if (targetCell != null) desiredDirection = ((Vector2)targetCell - position).normalized;
 
             var desiredVelocity = desiredDirection * maxSpeed;
             var desiredTurnSpeed = (desiredVelocity - velocity) * steerStrength;
@@ -48,18 +59,12 @@ namespace Behaviour_Scripts
             position += velocity * Time.deltaTime;
 
             var angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
-            //transform.SetPositionAndRotation(position, Quaternion.Euler(0,0, angle));
-            body.position = position; 
-            body.SetRotation(Quaternion.Euler(0,0, angle));
-            
-
-            
-            
+            transform.SetPositionAndRotation(position, Quaternion.Euler(0,0, angle));
         }
 
         private void LookForTargetCell()
         {
-            if (!targetCell)
+            if (targetCell == null)
             {
                 float smallestDistance = Mathf.Infinity;
                 foreach (GameObject cell in CellManager.Instance.cellList)
@@ -67,17 +72,17 @@ namespace Behaviour_Scripts
                     float distance = Vector2.Distance(position, cell.transform.position);
                     if (distance < viewRadius && distance < smallestDistance && cell != visitedCell)
                     {
-                        targetCell = cell;
+                        targetCell = cell.transform.position;
+                        visitedCell = cell;
                         smallestDistance = distance;
                     }
                 }
             }
 
-            if (targetCell)
+            if (targetCell != null)
             {
-                if (Vector2.Distance(position, targetCell.transform.position) < damageRange)
+                if (Vector2.Distance(position, (Vector2)targetCell) < damageRange)
                 {
-                    visitedCell = targetCell;
                     targetCell = null;
                 }
             }

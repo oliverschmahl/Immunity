@@ -11,12 +11,20 @@ namespace Managers
         
         public bool isPaused;
         public RectTransform playableArea;
-
-        [SerializeField] private string selectedOrganism = "null"; 
+        [SerializeField, Range(0f, 100f)] public float playableAreaPadding = 2f;
+        [SerializeField] private string selectedOrganism = "null";
+        
+        private readonly Vector3[] _worldCorners = new Vector3[4];
 
         private void Awake()
         {
             instance = this;
+            instance.playableArea.GetWorldCorners(_worldCorners);
+        }
+
+        public Vector3[] GetWorldCorners()
+        {
+            return _worldCorners;
         }
 
         public bool IsPaused
