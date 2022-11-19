@@ -6,15 +6,15 @@ using UnityEngine;
 
 namespace Behaviour_Scripts
 {
-    enum State
-    {
-        normal=0,
-        disabled=1,
-        angry=2
-    }
-
     public class Macrophage : MonoBehaviour
     {
+        public enum State
+        {
+            normal=0,
+            disabled=1,
+            angry=2
+        }
+
         // Serialized fields
         [SerializeField, Range(10f, 300f)] private float movementSpeed = 50f;
         [SerializeField, Range(0.1f, 5f)] private float rotationSpeed = 0.5f;
@@ -52,11 +52,15 @@ namespace Behaviour_Scripts
                 if (state != State.angry) {
                     state = State.angry;
                     spriteManager.changeSprite((int) State.angry);
+                    movementSpeed = 300f;
+                    rotationSpeed = 3f;
                 }
             } else if (killsLeft <= 100 && killsLeft > 0) {
                 if (state != State.normal) {
                     state = State.normal;
                     spriteManager.changeSprite((int) State.normal);
+                    movementSpeed = 50f;
+                    rotationSpeed = 0.5f;
                 }
             } else {
                 if (state != State.disabled) {
@@ -109,7 +113,6 @@ namespace Behaviour_Scripts
                     if (killsLeft > 0 ) {
                         killsLeft -= 1;
                     }
-                    FindTarget();
                 }
             }
         }
@@ -129,6 +132,14 @@ namespace Behaviour_Scripts
             }
 
             if (closestEnemy) _target = closestEnemy;
+        }
+
+        public State getState() {
+            return state;
+        }
+
+        public void boost() {
+            killsLeft = 200;
         }
     }
 }
