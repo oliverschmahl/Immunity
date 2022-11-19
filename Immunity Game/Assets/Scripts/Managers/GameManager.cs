@@ -41,11 +41,15 @@ namespace Managers
                 {
                     case "T Cell":
                         TcellManager.Instance.Spawn(new Vector2(0f, 0f) ,worldLocation);
+                        selectedOrganism = "null";
                         break;
                     case "Macrophage":
                         MacrophageManager.Instance.Spawn(new Vector2(0f,0f), worldLocation);
+                        selectedOrganism = "null";
                         break;
                     case "Neutrophil":
+                        NeutrophilManager.Instance.Spawn(new Vector2(0f,0f), worldLocation);
+                        selectedOrganism = "null";
                         break;
                 }
             }
