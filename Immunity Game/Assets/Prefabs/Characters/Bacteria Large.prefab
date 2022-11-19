@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5634527518492511929}
   m_Layer: 0
   m_Name: Bacteria Large
-  m_TagString: Bacteria
+  m_TagString: Bacteria Large
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61,10 +61,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 1
   steerStrength: 1
-  wanderStrength: 0.1
+  wanderStrength: 0.01
   visitedCell: {fileID: 0}
   viewRadius: 1
-  damage: 1
+  damage: 3
   damageRange: 0.05
 --- !u!1 &7376381613272290997
 GameObject:
@@ -137,8 +137,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 314775283
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 81d39579fd085b34b846b434bbd13b07, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

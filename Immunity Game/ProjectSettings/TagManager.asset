@@ -4,8 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Bacteria
   - Cell
+  - T Cell
+  - Macrophage
+  - Antibodies
+  - Neutrophil
+  - Complement Protein
+  - Bacteria Large
+  - Bacteria Small
   layers:
   - Default
   - TransparentFX
@@ -42,4 +48,28 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Effects
+    uniqueID: 1195566931
+    locked: 0
+  - name: Cell
+    uniqueID: 2878661859
+    locked: 0
+  - name: Bacteria
+    uniqueID: 314775283
+    locked: 0
+  - name: Neutrophil
+    uniqueID: 1191572047
+    locked: 0
+  - name: Macrophage
+    uniqueID: 3515755823
+    locked: 0
+  - name: T Cell
+    uniqueID: 3274907209
+    locked: 0
+  - name: Antibodies
+    uniqueID: 3253506771
+    locked: 0
+  - name: Complement Protein
+    uniqueID: 920563833
     locked: 0

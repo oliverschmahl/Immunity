@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using UnityEditor.UIElements;
 using UnityEngine;
 
 namespace Managers
@@ -26,6 +27,12 @@ namespace Managers
                 GameObject pooledBacteria = Instantiate(bacteriaLargePrefab, transform);
                 pooledBacteria.SetActive(false);
                 pooledBacterias.Add(pooledBacteria);
+            }
+
+            GameObject[] placedManually = GameObject.FindGameObjectsWithTag("Bacteria Large");
+            foreach (GameObject bacteria in placedManually)
+            {
+                pooledBacterias.Add(bacteria);
             }
         }
 

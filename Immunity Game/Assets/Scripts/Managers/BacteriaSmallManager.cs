@@ -27,6 +27,12 @@ namespace Managers
                 pooledBacteria.SetActive(false);
                 pooledBacterias.Add(pooledBacteria);
             }
+            
+            GameObject[] placedManually = GameObject.FindGameObjectsWithTag("Bacteria Small");
+            foreach (GameObject bacteria in placedManually)
+            {
+                pooledBacterias.Add(bacteria);
+            }
         }
 
         public void SpawnBacteria(Vector2 spawnPosition)

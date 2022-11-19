@@ -9,8 +9,8 @@ namespace Behaviour_Scripts
     {
         public Vector2 spawnTarget;
         private bool reachedSpawnTarget = false;
-        [SerializeField, Range(10f, 300f)] private float movementSpeed = 200f;
-        [SerializeField, Range(0.1f, 5f)] private float rotationSpeed = 2f;
+        [SerializeField] private float movementSpeed = 3f;
+        [SerializeField] private float rotationSpeed = 0.8f;
 
         private List<GameObject> macrophages;
 

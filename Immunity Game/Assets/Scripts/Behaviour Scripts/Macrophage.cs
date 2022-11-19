@@ -16,14 +16,14 @@ namespace Behaviour_Scripts
         }
 
         // Serialized fields
-        [SerializeField, Range(10f, 300f)] private float movementSpeed = 50f;
-        [SerializeField, Range(0.1f, 5f)] private float rotationSpeed = 0.5f;
+        [SerializeField] private float movementSpeed = 1f;
+        [SerializeField] private float rotationSpeed = 0.5f;
         [SerializeField] private int killsLeft = 100;
         
         private List<GameObject> _bacteriaSmall;
         private List<GameObject> _bacteriaLarge;
         private GameObject[] _bacteria;
-        private GameObject _target;
+        public GameObject _target;
         
         public Vector2 spawnTarget;
         private bool _reachedSpawnTarget = false;
@@ -35,11 +35,6 @@ namespace Behaviour_Scripts
 
         private void Start()
         {
-            _bacteriaSmall = BacteriaSmallManager.Instance.pooledBacterias;
-            _bacteriaLarge = BacteriaLargeManager.Instance.pooledBacterias;
-
-            _bacteria = _bacteriaLarge.Concat(_bacteriaSmall).ToArray();
-
             spriteManager = sprite.GetComponent<SpriteManager>();
         }
 
@@ -88,7 +83,7 @@ namespace Behaviour_Scripts
                 if (Vector2.Distance(transform.position, spawnTarget) < 5f) _reachedSpawnTarget = true;
                 return;
             }
-            if (_bacteria is not {Length: > 0}) return;
+            
             FindTarget();
             if (_target)
             {
@@ -107,7 +102,7 @@ namespace Behaviour_Scripts
                 transform.up = newDirection;
 
                 float distanceToTarget = Vector2.Distance(macrophagePosition, targetPosition);
-                if (distanceToTarget < 60f)
+                if (distanceToTarget < 1f)
                 {
                     _target.SetActive(false);
                     if (killsLeft > 0 ) {
@@ -119,10 +114,16 @@ namespace Behaviour_Scripts
 
         void FindTarget()
         {
+            _bacteriaSmall = BacteriaSmallManager.Instance.pooledBacterias;
+            _bacteriaLarge = BacteriaLargeManager.Instance.pooledBacterias;
+
+            _bacteria = _bacteriaLarge.Concat(_bacteriaSmall).ToArray();
+            
             float distance = Mathf.Infinity;
             GameObject closestEnemy = null;
             foreach (GameObject enemy in _bacteria)
             {
+                if(!enemy.activeInHierarchy) continue;
                 float distanceToEnemy = Vector2.Distance(transform.position, enemy.transform.position);
                 if (distanceToEnemy < distance)
                 {
