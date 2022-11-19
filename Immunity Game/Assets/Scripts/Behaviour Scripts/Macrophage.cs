@@ -8,6 +8,13 @@ namespace Behaviour_Scripts
 {
     public class Macrophage : MonoBehaviour
     {
+        public enum State
+        {
+            normal=0,
+            disabled=1,
+            angry=2
+        }
+
         // Serialized fields
         [SerializeField, Range(10f, 300f)] private float movementSpeed = 50f;
         [SerializeField, Range(0.1f, 5f)] private float rotationSpeed = 0.5f;
@@ -21,18 +28,53 @@ namespace Behaviour_Scripts
         public Vector2 spawnTarget;
         private bool _reachedSpawnTarget = false;
 
+        public GameObject sprite;
+        private SpriteManager spriteManager; 
+
+        private State state = State.normal;
+
         private void Start()
         {
             _bacteriaSmall = BacteriaSmallManager.Instance.pooledBacterias;
             _bacteriaLarge = BacteriaLargeManager.Instance.pooledBacterias;
 
             _bacteria = _bacteriaLarge.Concat(_bacteriaSmall).ToArray();
+
+            spriteManager = sprite.GetComponent<SpriteManager>();
         }
 
         void Update()
         {
             if (GameManager.instance.IsPaused) return;
-            if (killsLeft <= 0) return;
+
+            // update state and sprite based on kill count
+            if (killsLeft > 100) {
+                if (state != State.angry) {
+                    state = State.angry;
+                    spriteManager.changeSprite((int) State.angry);
+                    movementSpeed = 300f;
+                    rotationSpeed = 3f;
+                }
+            } else if (killsLeft <= 100 && killsLeft > 0) {
+                if (state != State.normal) {
+                    state = State.normal;
+                    spriteManager.changeSprite((int) State.normal);
+                    movementSpeed = 50f;
+                    rotationSpeed = 0.5f;
+                }
+            } else {
+                if (state != State.disabled) {
+                    state = State.disabled;
+                    spriteManager.changeSprite((int) State.disabled);
+                } 
+            }
+
+            // check if the macrophage is disabled before proceeding
+            if (state == State.disabled) {
+                return;
+            }
+
+
             if (!_reachedSpawnTarget)
             {
                 float step = movementSpeed * Time.deltaTime;
@@ -68,8 +110,9 @@ namespace Behaviour_Scripts
                 if (distanceToTarget < 60f)
                 {
                     _target.SetActive(false);
-                    killsLeft -= 1;
-                    FindTarget();
+                    if (killsLeft > 0 ) {
+                        killsLeft -= 1;
+                    }
                 }
             }
         }
@@ -89,6 +132,14 @@ namespace Behaviour_Scripts
             }
 
             if (closestEnemy) _target = closestEnemy;
+        }
+
+        public State getState() {
+            return state;
+        }
+
+        public void boost() {
+            killsLeft = 200;
         }
     }
 }

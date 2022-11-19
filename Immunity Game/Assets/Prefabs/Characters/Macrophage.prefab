@@ -50,6 +50,8 @@ MonoBehaviour:
   movementSpeed: 50
   rotationSpeed: 0.5
   killsLeft: 100
+  spawnTarget: {x: 0, y: 0}
+  sprite: {fileID: 5825199991732526534}
 --- !u!50 &7113776272700818914
 Rigidbody2D:
   serializedVersion: 4
@@ -103,8 +105,9 @@ GameObject:
   m_Component:
   - component: {fileID: 656871856322197393}
   - component: {fileID: 8147217382231504258}
+  - component: {fileID: 9081683844014454338}
   m_Layer: 0
-  m_Name: Macrophage (1)
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -166,14 +169,30 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 48ed4aa2e873d4a4e834486b3150443f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6ee0145a60486f34f8cfa9b7a345ed84, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 14.961875, y: 23.68}
+  m_Size: {x: 25, y: 25}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &9081683844014454338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5825199991732526534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ae3032e67fa04a44b6a8eb661fefaf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteArray:
+  - {fileID: 21300000, guid: 6ee0145a60486f34f8cfa9b7a345ed84, type: 3}
+  - {fileID: 21300000, guid: 583d82f516820ce4dad12c926bb1356f, type: 3}
+  - {fileID: 21300000, guid: 830e835cd20a11f4da46b5d0cca53918, type: 3}
