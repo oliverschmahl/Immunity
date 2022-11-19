@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Managers;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -9,21 +10,25 @@ namespace Behaviour_Scripts
     public class Neutrophil : MonoBehaviour
     {
         // Serialized fields
-        [SerializeField, Range(10f, 300f)] private float movementSpeed = 50f;
+        [SerializeField, Range(10f, 300f)] private float speed = 50f;
         [SerializeField, Range(0.1f, 5f)] private float rotationSpeed = 0.5f;
         [SerializeField] private int damage = 100;
         [SerializeField, Range(10f, 200f)] private float damageRange = 50f;
         [SerializeField, Range(10f, 200f)] private float randomMovementRangeBeforeDetonation = 50f;
         [SerializeField, Range(0.1f, 20f)] private float shakeStrength = 0.5f;
 
+        private List<GameObject> _bacteriaSmall;
+        private List<GameObject> _bacteriaLarge;
+        
         private GameObject[] _bacteria;
         private GameObject[] _cells;
-        private Vector3 _target;
         private readonly Vector3[] _worldCorners = new Vector3[4];
 
-        private bool _reachedTarget;
+        private bool _reachedSpawnTarget;
         private float _selfDestructTimer;
         private bool _hasExploded = false;
+        
+        public Vector2 spawnTarget;
 
 
         private void Awake()
@@ -47,66 +52,51 @@ namespace Behaviour_Scripts
         }
 
         private void Start()
-        {
-            GameManager.instance.playableArea.GetWorldCorners(_worldCorners);
-            Vector3 neutrophilPosition = transform.position;
-            _target = new Vector3(
-                Mathf.Clamp(
-                    Random.Range(neutrophilPosition.x - randomMovementRangeBeforeDetonation,
-                        neutrophilPosition.x + randomMovementRangeBeforeDetonation),
-                    _worldCorners[0].x,
-                    _worldCorners[2].x
-                ),
-                Mathf.Clamp(
-                    Random.Range(neutrophilPosition.y - randomMovementRangeBeforeDetonation,
-                        neutrophilPosition.y + randomMovementRangeBeforeDetonation),
-                    _worldCorners[0].y,
-                    _worldCorners[2].y
-                ),
-                0f
-            );
+        { 
+            _bacteriaSmall = BacteriaSmallManager.Instance.pooledBacterias;
+            _bacteriaLarge = BacteriaLargeManager.Instance.pooledBacterias;
+
+            _bacteria = _bacteriaLarge.Concat(_bacteriaSmall).ToArray();
         }
 
         private void Update()
         {
             if (GameManager.instance.IsPaused) return;
-            var neutrophilTransform = transform;
-            var neutrophilPosition = neutrophilTransform.position;
-            var neutrophilUp = neutrophilTransform.up;
             
-            if (!_reachedTarget)
-            {
-                // Move forward
-                neutrophilPosition += neutrophilUp * (Time.deltaTime * movementSpeed);
-                neutrophilTransform.position = neutrophilPosition;
-                // Rotate towards target
-                Vector3 targetDirection = (_target - neutrophilPosition).normalized;
-                Vector2 newDirection = Vector2.Lerp(neutrophilUp, targetDirection, rotationSpeed * Time.deltaTime);
-                transform.up = newDirection;
+            var _transform = transform;
+            var _pos = _transform.position;
 
-                if (Vector2.Distance(neutrophilPosition, _target) < 2f) _reachedTarget = true;
+            if (!_reachedSpawnTarget)
+            {
+                float step = speed * Time.deltaTime;
+                Vector2 _posV2 = 
+                    _pos = Vector2.MoveTowards(_pos, spawnTarget, step);
+                
+                _transform.position = _pos;
+                transform.right = spawnTarget - _posV2;
+                if (Vector2.Distance(transform.position, spawnTarget) < 5f) _reachedSpawnTarget = true;
             }
 
-            if (!_reachedTarget) return;
+            if (!_reachedSpawnTarget) return;
             bool selfDestructTimerReached = _selfDestructTimer > 5f;
             if (!selfDestructTimerReached) {
-                float x = neutrophilPosition.x + Random.Range(-shakeStrength, shakeStrength);
-                float y = neutrophilPosition.y + Random.Range(-shakeStrength, shakeStrength);
+                float x = _pos.x + Random.Range(-shakeStrength, shakeStrength);
+                float y = _pos.y + Random.Range(-shakeStrength, shakeStrength);
                 transform.position = new Vector3(x, y, 0f);
                 _selfDestructTimer += Time.deltaTime;
             }
 
             if (!selfDestructTimerReached) return;
-            if (!_hasExploded) Explode(neutrophilPosition);
+            if (!_hasExploded) Explode(_pos);
         }
 
         private void Explode(Vector3 neutrophilPosition)
         {
             gameObject.GetComponentInChildren<ParticleSystem>().Play();
-            gameObject.GetComponentInChildren<SpriteRenderer>().sprite = Resources.Load<Sprite>("Characters/Defense Organisms/Neutrophil_Explode");
+            gameObject.GetComponentInChildren<SpriteRenderer>().sprite = Resources.Load<Sprite>("Characters/New_Defence_Organisms/Neutrophil_Explode.png");
             foreach (GameObject bacterium in _bacteria)
             {
-                if (Vector2.Distance(neutrophilPosition, bacterium.transform.position) < damageRange) bacterium.GetComponent<Health>().TakeDamage(damage);
+                if (Vector2.Distance(neutrophilPosition, bacterium.transform.position) < damageRange) bacterium.GetComponent<Health>().TakeDamage(damage); print(bacterium.name);
             }
 
             _hasExploded = true;
