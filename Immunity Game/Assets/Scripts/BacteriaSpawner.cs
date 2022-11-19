@@ -12,13 +12,10 @@ public class BacteriaSpawner : MonoBehaviour
     [SerializeField] private float swarmBacteriaBigInterval = 2f;
 
     [SerializeField, Range(0f, 300f)] private float spawnDeviation = 40f;
-
-    private readonly Vector3[] _worldCorners = new Vector3[4];
-
+    
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.instance.playableArea.GetWorldCorners(_worldCorners);
         StartCoroutine(SpawnBacterias(swarmBacteriaSmallInterval, "small"));
         StartCoroutine(SpawnBacterias(swarmBacteriaBigInterval, "large"));
     }
