@@ -6,6 +6,13 @@ using UnityEngine;
 
 namespace Behaviour_Scripts
 {
+    enum State
+    {
+        normal=0,
+        disabled=1,
+        angry=2
+    }
+
     public class Macrophage : MonoBehaviour
     {
         // Serialized fields
@@ -21,18 +28,49 @@ namespace Behaviour_Scripts
         public Vector2 spawnTarget;
         private bool _reachedSpawnTarget = false;
 
+        public GameObject sprite;
+        private SpriteManager spriteManager; 
+
+        private State state = State.normal;
+
         private void Start()
         {
             _bacteriaSmall = BacteriaSmallManager.Instance.pooledBacterias;
             _bacteriaLarge = BacteriaLargeManager.Instance.pooledBacterias;
 
             _bacteria = _bacteriaLarge.Concat(_bacteriaSmall).ToArray();
+
+            spriteManager = sprite.GetComponent<SpriteManager>();
         }
 
         void Update()
         {
             if (GameManager.instance.IsPaused) return;
-            if (killsLeft <= 0) return;
+
+            // update state and sprite based on kill count
+            if (killsLeft > 100) {
+                if (state != State.angry) {
+                    state = State.angry;
+                    spriteManager.changeSprite((int) State.angry);
+                }
+            } else if (killsLeft <= 100 && killsLeft > 0) {
+                if (state != State.normal) {
+                    state = State.normal;
+                    spriteManager.changeSprite((int) State.normal);
+                }
+            } else {
+                if (state != State.disabled) {
+                    state = State.disabled;
+                    spriteManager.changeSprite((int) State.disabled);
+                } 
+            }
+
+            // check if the macrophage is disabled before proceeding
+            if (state == State.disabled) {
+                return;
+            }
+
+
             if (!_reachedSpawnTarget)
             {
                 float step = movementSpeed * Time.deltaTime;
@@ -68,7 +106,9 @@ namespace Behaviour_Scripts
                 if (distanceToTarget < 60f)
                 {
                     _target.SetActive(false);
-                    killsLeft -= 1;
+                    if (killsLeft > 0 ) {
+                        killsLeft -= 1;
+                    }
                     FindTarget();
                 }
             }
