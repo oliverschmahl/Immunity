@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4917101863415171706}
   - component: {fileID: 8981768186478024424}
+  - component: {fileID: 841905654467090279}
   - component: {fileID: 9039490511501739015}
   - component: {fileID: 913582630517385611}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cell
   m_TagString: Cell
   m_Icon: {fileID: 0}
@@ -47,6 +48,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de98ada0f054819aefc4861408e130b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSpeed: 75
+  rotationSpeed: 2
+  randomTargetDistance: 500
+  visionDistance: 200
+--- !u!114 &841905654467090279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814131771369910960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7768cf4cfa684f70a1be0d0090c2745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!50 &9039490511501739015
 Rigidbody2D:
   serializedVersion: 4
@@ -116,7 +134,7 @@ Transform:
   m_GameObject: {fileID: 1857753067174780862}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.045, y: 0.045, z: 0.045}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4917101863415171706}
@@ -163,7 +181,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a0062fb3e30a74cc5ae48ef265a1c0dd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 82cf65b9ba054a248ab850626f6990c9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
