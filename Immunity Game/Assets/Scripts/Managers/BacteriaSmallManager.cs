@@ -10,6 +10,7 @@ namespace Managers
         public static BacteriaSmallManager Instance;
         
         public List<GameObject> pooledBacterias;
+        public List<GameObject> bacteriaList;
         public GameObject bacteriaSmallPrefab;
         public int pooledAmount;
         
@@ -47,6 +48,12 @@ namespace Managers
                     return;
                 }
             }
+        }
+
+        public void RemoveBacteria(GameObject bacteria)
+        {
+            pooledBacterias.Remove(bacteria);
+            Destroy(bacteria);
         }
     }
 }

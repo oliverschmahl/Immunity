@@ -21,7 +21,14 @@ public class Health : MonoBehaviour
                 case "Cell": 
                     CellManager.Instance.RemoveCell(gameObject);
                     break;
+                case "Bacteria Small":
+                    BacteriaSmallManager.Instance.RemoveBacteria(bacteria: gameObject);
+                    break;
+                case "Complement Protein":
+                    ComplementProteinManager.Instance.RemoveComplementProtein(complementProtein: gameObject);
+                    break;
             }
         }
     }
 }
+
