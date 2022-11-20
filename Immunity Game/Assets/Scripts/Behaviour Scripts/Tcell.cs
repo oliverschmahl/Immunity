@@ -12,13 +12,13 @@ namespace Behaviour_Scripts
         [SerializeField] private float movementSpeed = 3f;
         [SerializeField] private float rotationSpeed = 0.8f;
 
-        private List<GameObject> macrophages;
+        private List<GameObject> tcells;
 
         private GameObject target;
 
         void Start()
         {
-            macrophages = MacrophageManager.Instance.macrophageList;
+            tcells = MacrophageManager.Instance.macrophageList;
         }
 
         void Update()
@@ -39,7 +39,7 @@ namespace Behaviour_Scripts
                 if (Vector2.Distance(transform.position, spawnTarget) < 5f) reachedSpawnTarget = true;
             }
 
-            bool areThereMacrophages = macrophages.Count > 0;
+            bool areThereMacrophages = tcells.Count > 0;
             if (!areThereMacrophages) return;
 
             FindTarget();
@@ -73,7 +73,7 @@ namespace Behaviour_Scripts
         {
             float distance = Mathf.Infinity;
             GameObject closestMacrophage = null;
-            foreach (GameObject macrophage in macrophages)
+            foreach (GameObject macrophage in tcells)
             {
                 if (macrophage.GetComponent<Macrophage>().getState() == Macrophage.State.Disabled) {
                     float distanceToMacrophage = Vector2.Distance(transform.position, macrophage.transform.position);
