@@ -1305,6 +1305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pooledBacterias: []
+  bacteriaList: []
   bacteriaSmallPrefab: {fileID: 4898126210892204312, guid: e354abff6ea090f4d8a2df609d5c5a38, type: 3}
   pooledAmount: 5000
 --- !u!4 &118601692 stripped
@@ -3094,6 +3095,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 406538716}
     m_Modifications:
+    - target: {fileID: 444728545921556646, guid: cfb3c491024946247bd6df3648ec9a16, type: 3}
+      propertyPath: spawnTarget.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 512946964166057560, guid: cfb3c491024946247bd6df3648ec9a16, type: 3}
       propertyPath: m_Name
       value: Antibodies (2)
@@ -3151,6 +3156,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 406538716}
     m_Modifications:
+    - target: {fileID: 444728545921556646, guid: cfb3c491024946247bd6df3648ec9a16, type: 3}
+      propertyPath: spawnTarget.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 512946964166057560, guid: cfb3c491024946247bd6df3648ec9a16, type: 3}
       propertyPath: m_Name
       value: Antibodies (1)
@@ -11743,6 +11752,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   complementProteinList: []
+  complementProteinPrefab: {fileID: 0}
 --- !u!1 &1326540689
 GameObject:
   m_ObjectHideFlags: 0

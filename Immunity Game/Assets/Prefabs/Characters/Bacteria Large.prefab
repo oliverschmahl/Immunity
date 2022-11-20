@@ -66,6 +66,7 @@ MonoBehaviour:
   viewRadius: 1
   damage: 3
   damageRange: 0.05
+  sprite: {fileID: 7376381613272290997}
 --- !u!1 &7376381613272290997
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,7 +79,7 @@ GameObject:
   - component: {fileID: 8959932545540855533}
   - component: {fileID: 6548567932828184202}
   m_Layer: 0
-  m_Name: sprite
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

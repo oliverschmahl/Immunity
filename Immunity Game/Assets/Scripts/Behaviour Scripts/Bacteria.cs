@@ -10,6 +10,12 @@ namespace Behaviour_Scripts
 {
     public class Bacteria : MonoBehaviour
     {
+        public enum State
+        {
+            active=0,
+            stunned=1
+        }
+
         public float maxSpeed = 1;
         public float steerStrength = 1;
         public float wanderStrength = 0.1f;
@@ -23,14 +29,21 @@ namespace Behaviour_Scripts
         private Vector2 velocity;
         private Vector2 desiredDirection;
 
+        private SpriteManager spriteManager; 
+
+        private State state = State.active;
+
         private void Start()
         {
             position = transform.position;
+            spriteManager = GetComponentInChildren<SpriteManager>();
         }
 
         private void Update()
         {
             if (GameManager.instance.IsPaused) return;
+
+            if (state == State.stunned) return;
 
             LookForTargetCell();
 
@@ -86,6 +99,20 @@ namespace Behaviour_Scripts
                     targetCell = null;
                 }
             }
+        }
+
+        public void stun() {
+            state = State.stunned;
+            spriteManager.changeSprite((int) State.stunned);
+        }
+
+        public void wakeUp() {
+            state = State.active;
+            spriteManager.changeSprite((int) State.active);
+        }
+
+        public State getState() {
+            return state;
         }
     }
 }
