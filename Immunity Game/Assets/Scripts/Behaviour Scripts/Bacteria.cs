@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
+using Helpers;
 using Managers;
-using Unity.Mathematics;
-using UnityEditor.UIElements;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -46,19 +43,10 @@ namespace Behaviour_Scripts
             if (state == State.stunned) return;
 
             LookForTargetCell();
-
-            Vector3[] worldCorners = GameManager.instance.GetWorldCorners();
-            Vector3 bottomLeftCorner = worldCorners[0];
-            Vector3 topLeftCorner = worldCorners[1];
-            Vector3 topRightCorner = worldCorners[2];
-            bool outsideRightBorder = position.x > topRightCorner.x - GameManager.instance.playableAreaPadding;
-            bool outsideLeftBorder = position.x < topLeftCorner.x + GameManager.instance.playableAreaPadding;
-            bool outsideBottomBorder = position.y < bottomLeftCorner.y - GameManager.instance.playableAreaPadding;
-            bool outsideTopBorder = position.y > topRightCorner.y + GameManager.instance.playableAreaPadding;
-
-            if (outsideRightBorder || outsideLeftBorder || outsideTopBorder || outsideBottomBorder)
+            
+            if (!WorldBounds.InsideWorld(position))
             {
-                targetCell = new Vector3(Random.Range(topLeftCorner.x, topRightCorner.x), Random.Range(bottomLeftCorner.y, topLeftCorner.y), 0f);
+                targetCell = new Vector3(Random.Range(WorldBounds.GetMinX(), WorldBounds.GetMaxX()), Random.Range(WorldBounds.GetMinY(), WorldBounds.GetMaxY()), 0f);
             }
             
             if (targetCell == null) desiredDirection = (desiredDirection + Random.insideUnitCircle * wanderStrength).normalized;
