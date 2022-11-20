@@ -11,7 +11,6 @@ namespace Managers
         public static NeutrophilManager Instance;
         public List<GameObject> neutrophilList;
         public GameObject neutrophilPrefab;
-        public static event Action<List<GameObject>> OnNeutrophilListChanged;
 
         private void Awake()
         {
@@ -25,20 +24,17 @@ namespace Managers
             {
                 neutrophilList.Add(cell);
             }
-            OnNeutrophilListChanged?.Invoke(neutrophilList);
         }
 
-        public void RemoveAntibodies(GameObject cell)
+        public void Remove(GameObject cell)
         {
             neutrophilList.Remove(cell);
             Destroy(cell);
-            OnNeutrophilListChanged?.Invoke(neutrophilList);
         }
         
-        public void AddMacrophage(GameObject cell)
+        public void Add(GameObject cell)
         {
             neutrophilList.Add(cell);
-            OnNeutrophilListChanged?.Invoke(neutrophilList);
         }
 
         public void Spawn(Vector2 location, Vector2 spawnTarget)
@@ -46,7 +42,7 @@ namespace Managers
             var spawned = Instantiate(neutrophilPrefab, location, quaternion.identity);
             spawned.transform.parent = MacrophageManager.Instance.transform;
             spawned.GetComponent<Neutrophil>().spawnTarget = spawnTarget;
-            AddMacrophage(spawned);
+            Add(spawned);
         }
     }
 }

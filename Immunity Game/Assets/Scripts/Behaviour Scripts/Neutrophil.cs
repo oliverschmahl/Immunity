@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using Managers;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -14,12 +12,19 @@ namespace Behaviour_Scripts
         [SerializeField] private int damage = 100;
         [SerializeField] private float damageRange = 5f;
         [SerializeField] private float shakeStrength = 0.01f;
+        [SerializeField] private int guuDamage = 2;
+
+        [SerializeField] private float guuSeconds = 25f;
+        private CircleCollider2D _guuCollider;
 
         private List<GameObject> _bacteriaSmall;
         private List<GameObject> _bacteriaLarge;
 
         private SpriteManager _spriteManager;
         private ParticleSystem _particleSystem;
+
+        private float _passedTime = 0f;
+        private float _lastTime = 0f;
 
         private bool _reachedSpawnTarget;
         private float _selfDestructTimer;
@@ -37,6 +42,7 @@ namespace Behaviour_Scripts
         {
             _spriteManager = GetComponentInChildren<SpriteManager>();
             _particleSystem = GetComponentInChildren<ParticleSystem>();
+            _guuCollider = GetComponentInChildren<CircleCollider2D>();
         }
 
         private void Update()
@@ -67,7 +73,35 @@ namespace Behaviour_Scripts
             }
 
             if (!selfDestructTimerReached) return;
-            if (!_hasExploded) Explode(pos);
+            if (!_hasExploded)
+            {
+                Explode(pos);
+            }
+
+            guuSeconds -= Time.deltaTime;
+            if (guuSeconds < -2f) NeutrophilManager.Instance.Remove(gameObject);
+            if (guuSeconds <= 0f)
+            {
+                _particleSystem.Stop();
+                return;
+            }
+            
+            
+            _passedTime += Time.deltaTime;
+            List<Collider2D> objectsInsideGuuArea = new List<Collider2D>();
+            _guuCollider.OverlapCollider(new ContactFilter2D(), objectsInsideGuuArea);
+
+            foreach (Collider2D objectInsideGuuArea in objectsInsideGuuArea)
+            {
+                GameObject objectInsideGameObject = objectInsideGuuArea.gameObject;
+                if (objectInsideGameObject.CompareTag("Bacteria Large") || objectInsideGameObject.CompareTag("Bacteria Small"))
+                {
+                    if (_passedTime > _lastTime + 1) objectInsideGuuArea.gameObject.GetComponent<Health>().TakeDamage(guuDamage);
+                }
+            }
+
+            if (_passedTime > _lastTime + 1) _lastTime = _passedTime;
+
         }
 
         private void Explode(Vector3 neutrophilPosition)
