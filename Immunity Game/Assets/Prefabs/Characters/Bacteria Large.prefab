@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 68275820617735233}
   - component: {fileID: 2229189957621870973}
   - component: {fileID: 5634527518492511929}
+  - component: {fileID: 7106169123969769245}
   m_Layer: 0
   m_Name: Bacteria Large
   m_TagString: Bacteria Large
@@ -59,14 +60,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea77eac938cdd4cd6b1090f10a7e338b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 1
-  steerStrength: 1
+  maxSpeed: 0.9
+  steerStrength: 0.6
   wanderStrength: 0.01
   visitedCell: {fileID: 0}
-  viewRadius: 1
+  viewRadius: 20
   damage: 3
-  damageRange: 0.05
-  sprite: {fileID: 7376381613272290997}
+  damageRange: 7
+--- !u!70 &7106169123969769245
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2962982351549213880}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.2722925, y: 0.15794013}
+  m_Size: {x: 4.8409686, y: 1.6841593}
+  m_Direction: 1
 --- !u!1 &7376381613272290997
 GameObject:
   m_ObjectHideFlags: 0

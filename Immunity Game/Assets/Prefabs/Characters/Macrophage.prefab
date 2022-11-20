@@ -45,12 +45,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b46244453c3a475f81ea7f86bfbf345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 1
-  rotationSpeed: 0.5
-  killsLeft: 100
-  _target: {fileID: 0}
+  movementSpeed_Normal: 1.3
+  rotationSpeed_Normal: 1.3
+  movementSpeed_Angry: 2.2
+  rotationSpeed_Angry: 1.7
+  state: 0
+  killsLeft: 25
+  target: {fileID: 0}
   spawnTarget: {x: 0, y: 0}
-  sprite: {fileID: 0}
 --- !u!1 &5825199991732526534
 GameObject:
   m_ObjectHideFlags: 0

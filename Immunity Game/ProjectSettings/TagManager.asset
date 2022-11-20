@@ -46,6 +46,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3695735811
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
@@ -72,4 +75,10 @@ TagManager:
     locked: 0
   - name: Complement Protein
     uniqueID: 920563833
+    locked: 0
+  - name: UI
+    uniqueID: 2978165927
+    locked: 0
+  - name: Menu
+    uniqueID: 3840022303
     locked: 0

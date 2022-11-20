@@ -6,6 +6,7 @@ using UnityEngine;
 public class MenuManager : MonoBehaviour
 {
     public GameObject menuScreen;
+    public GameObject optionsScreen;
     
     // Update is called once per frame
     void Update()
@@ -13,6 +14,7 @@ public class MenuManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             menuScreen.SetActive(!menuScreen.activeSelf);
+            optionsScreen.SetActive(false);
             GameManager.instance.isPaused = menuScreen.activeSelf;
         }
     }

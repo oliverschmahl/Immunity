@@ -75,7 +75,7 @@ namespace Behaviour_Scripts
             GameObject closestMacrophage = null;
             foreach (GameObject macrophage in macrophages)
             {
-                if (macrophage.GetComponent<Macrophage>().getState() == Macrophage.State.disabled) {
+                if (macrophage.GetComponent<Macrophage>().getState() == Macrophage.State.Disabled) {
                     float distanceToMacrophage = Vector2.Distance(transform.position, macrophage.transform.position);
                     if (distanceToMacrophage < distance)
                     {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Managers;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Behaviour_Scripts
 {
@@ -10,101 +11,103 @@ namespace Behaviour_Scripts
     {
         public enum State
         {
-            normal=0,
-            disabled=1,
-            angry=2
+            Normal,
+            Disabled,
+            Angry
         }
 
         // Serialized fields
-        [SerializeField] private float movementSpeed = 1f;
-        [SerializeField] private float rotationSpeed = 0.5f;
-        [SerializeField] private int killsLeft = 100;
+        [SerializeField] private float movementSpeed_Normal = 1.2f;
+        [SerializeField] private float rotationSpeed_Normal = 0.7f;
+        [SerializeField] private float movementSpeed_Angry = 1.5f;
+        [SerializeField] private float rotationSpeed_Angry = 1.2f;
+
+        [SerializeField] private State state = State.Normal;
         
-        private List<GameObject> _bacteriaSmall;
-        private List<GameObject> _bacteriaLarge;
-        private GameObject[] _bacteria;
-        public GameObject _target;
+        [SerializeField] private int killsLeft = 100;
+
+        private float _movementSpeed;
+        private float _rotationSpeed;
+
+        public GameObject target;
         
         public Vector2 spawnTarget;
         private bool _reachedSpawnTarget = false;
 
-        public GameObject sprite;
-        private SpriteManager spriteManager; 
-
-        private State state = State.normal;
+        private SpriteManager _spriteManager; 
 
         private void Start()
         {
-            spriteManager = sprite.GetComponent<SpriteManager>();
+            if (state == State.Normal) _movementSpeed = movementSpeed_Normal; _rotationSpeed = rotationSpeed_Normal;
+            if (state == State.Angry) _movementSpeed = movementSpeed_Angry; _rotationSpeed = movementSpeed_Angry;
+            _spriteManager = GetComponentInChildren<SpriteManager>();
         }
 
         void Update()
         {
             if (GameManager.instance.IsPaused) return;
 
-            // update state and sprite based on kill count
-            if (killsLeft > 100) {
-                if (state != State.angry) {
-                    state = State.angry;
-                    spriteManager.changeSprite((int) State.angry);
-                    movementSpeed = 300f;
-                    rotationSpeed = 3f;
-                }
-            } else if (killsLeft <= 100 && killsLeft > 0) {
-                if (state != State.normal) {
-                    state = State.normal;
-                    spriteManager.changeSprite((int) State.normal);
-                    movementSpeed = 50f;
-                    rotationSpeed = 0.5f;
-                }
-            } else {
-                if (state != State.disabled) {
-                    state = State.disabled;
-                    spriteManager.changeSprite((int) State.disabled);
-                } 
+            state = killsLeft switch
+            {
+                > 100 => State.Angry,
+                <= 100 and > 0 => State.Normal,
+                _ => State.Disabled
+            };
+
+            _spriteManager.changeSprite((int) state);
+            switch (state)
+            {
+                case State.Normal:
+                    _movementSpeed = movementSpeed_Normal;
+                    _rotationSpeed = rotationSpeed_Normal;
+                    break;
+                case State.Angry:
+                    _movementSpeed = movementSpeed_Angry;
+                    _rotationSpeed = rotationSpeed_Angry;
+                    break;
+                case State.Disabled:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
 
-            // check if the macrophage is disabled before proceeding
-            if (state == State.disabled) {
-                return;
-            }
+            if (state == State.Disabled) return;
 
 
             if (!_reachedSpawnTarget)
             {
-                float step = movementSpeed * Time.deltaTime;
-                var _transform = transform;
-                var _pos = transform.position;
-                Vector2 _posV2 = 
-                    _pos = Vector2.MoveTowards(_pos, spawnTarget, step);
+                float step = _movementSpeed * Time.deltaTime;
+                var macrophageTransform = transform;
+                var macrophagePosition = macrophageTransform.position;
+                Vector2 newPosition = macrophagePosition = Vector2.MoveTowards(macrophagePosition, spawnTarget, step);
                 
-                _transform.position = _pos;
-                transform.up = spawnTarget - _posV2;
-                if (Vector2.Distance(transform.position, spawnTarget) < 5f) _reachedSpawnTarget = true;
+                transform.position = macrophagePosition;
+                transform.up = spawnTarget - newPosition;
+                if (Vector2.Distance(transform.position, spawnTarget) < 3f) _reachedSpawnTarget = true;
                 return;
             }
             
             FindTarget();
-            if (_target)
+            if (target)
             {
                 var macrophageTransform = transform;
                 var macrophagePosition = macrophageTransform.position;
                 var macrophageUp = macrophageTransform.up;
                 
-                var targetPosition = _target.transform.position;
+                var targetPosition = target.transform.position;
                 
                 // Move forward
-                macrophagePosition += macrophageUp * (Time.deltaTime * movementSpeed);
-                macrophageTransform.position = macrophagePosition;
+                macrophagePosition += macrophageUp * (Time.deltaTime * _movementSpeed);
+                transform.position = macrophagePosition;
                 // Rotate towards target
                 Vector3 targetDirection = (targetPosition - macrophagePosition).normalized;
-                Vector2 newDirection = Vector2.Lerp(macrophageUp, targetDirection, rotationSpeed * Time.deltaTime);
+                Vector2 newDirection = Vector2.Lerp(macrophageUp, targetDirection, _rotationSpeed * Time.deltaTime);
                 transform.up = newDirection;
 
                 float distanceToTarget = Vector2.Distance(macrophagePosition, targetPosition);
                 if (distanceToTarget < 1f)
                 {
-                    _target.SetActive(false);
+                    target.SetActive(false);
                     if (killsLeft > 0 ) {
                         killsLeft -= 1;
                     }
@@ -114,14 +117,14 @@ namespace Behaviour_Scripts
 
         void FindTarget()
         {
-            _bacteriaSmall = BacteriaSmallManager.Instance.pooledBacterias;
-            _bacteriaLarge = BacteriaLargeManager.Instance.pooledBacterias;
+            List<GameObject> bacteriaSmall = BacteriaSmallManager.Instance.pooledBacterias;
+            List<GameObject> bacteriaLarge = BacteriaLargeManager.Instance.pooledBacterias;
 
-            _bacteria = _bacteriaLarge.Concat(_bacteriaSmall).ToArray();
+            GameObject[] bacteria = bacteriaLarge.Concat(bacteriaSmall).ToArray();
             
             float distance = Mathf.Infinity;
             GameObject closestEnemy = null;
-            foreach (GameObject enemy in _bacteria)
+            foreach (GameObject enemy in bacteria)
             {
                 if(!enemy.activeInHierarchy) continue;
                 float distanceToEnemy = Vector2.Distance(transform.position, enemy.transform.position);
@@ -132,7 +135,7 @@ namespace Behaviour_Scripts
                 }
             }
 
-            if (closestEnemy) _target = closestEnemy;
+            if (closestEnemy) target = closestEnemy;
         }
 
         public State getState() {
