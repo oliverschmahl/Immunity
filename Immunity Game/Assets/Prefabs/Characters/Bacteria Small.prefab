@@ -160,9 +160,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 1.1
-  steerStrength: 0.9
+  steerStrength: 0.8
   wanderStrength: 0.05
   visitedCell: {fileID: 0}
-  viewRadius: 0.5
+  viewRadius: 12
   damage: 1
-  damageRange: 0.05
+  damageRange: 7

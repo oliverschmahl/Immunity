@@ -59,13 +59,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea77eac938cdd4cd6b1090f10a7e338b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 1
-  steerStrength: 1
+  maxSpeed: 0.9
+  steerStrength: 0.6
   wanderStrength: 0.01
   visitedCell: {fileID: 0}
-  viewRadius: 1
+  viewRadius: 20
   damage: 3
-  damageRange: 0.05
+  damageRange: 7
 --- !u!1 &7376381613272290997
 GameObject:
   m_ObjectHideFlags: 0

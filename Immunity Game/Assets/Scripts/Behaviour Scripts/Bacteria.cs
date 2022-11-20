@@ -17,7 +17,7 @@ namespace Behaviour_Scripts
         public GameObject visitedCell = null;
         public float viewRadius = 5f;
         public int damage = 1;
-        public float damageRange = 0.05f;
+        public float damageRange = 0.5f;
         
         private Vector2 position;
         private Vector2 velocity;
@@ -67,16 +67,19 @@ namespace Behaviour_Scripts
             if (targetCell == null)
             {
                 float smallestDistance = Mathf.Infinity;
+                GameObject foundCell = null;
                 foreach (GameObject cell in CellManager.Instance.cellList)
                 {
                     float distance = Vector2.Distance(position, cell.transform.position);
                     if (distance < viewRadius && distance < smallestDistance && cell != visitedCell)
                     {
                         targetCell = cell.transform.position;
-                        visitedCell = cell;
+                        foundCell = cell;
                         smallestDistance = distance;
                     }
                 }
+
+                if (foundCell) visitedCell = foundCell;
             }
 
             if (targetCell != null)
@@ -84,6 +87,7 @@ namespace Behaviour_Scripts
                 if (Vector2.Distance(position, (Vector2)targetCell) < damageRange)
                 {
                     targetCell = null;
+                    visitedCell.GetComponent<Health>().TakeDamage(damage);
                 }
             }
         }
