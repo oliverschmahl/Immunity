@@ -146,9 +146,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd49aa2ef0f6240c69337e340fe5de89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  state: 0
+  maxSpeed: 2
+  steerStrength: 1
   damage: 100
   damageRange: 5
+  guuDamage: 2
+  gooSeconds: 25
   shakeStrength: 0.01
   spawnTarget: {x: 0, y: 0}
 --- !u!1001 &6654987522438856073
