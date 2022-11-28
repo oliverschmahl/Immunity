@@ -3957,7 +3957,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ' T Cell'
+          m_StringArgument: T Cell
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &2177314023068147243

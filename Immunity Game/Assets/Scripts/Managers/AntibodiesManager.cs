@@ -44,7 +44,7 @@ namespace Managers
         public void Spawn(Vector2 location, Vector2 spawnTarget)
         {
             var spawned = Instantiate(antibodiesPrefab, location, quaternion.identity);
-            spawned.transform.parent = MacrophageManager.Instance.transform;
+            spawned.transform.parent = AntibodiesManager.Instance.transform;
             spawned.GetComponent<Antibodies>().spawnTarget = spawnTarget;
             AddAntibodies(spawned);
         }

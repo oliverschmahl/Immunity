@@ -43,7 +43,7 @@ namespace Behaviour_Scripts
                 _pos = Vector2.MoveTowards(_pos, spawnTarget, step);
                 
                 _transform.position = _pos;
-                transform.right = spawnTarget - _posV2;
+                transform.up = spawnTarget - _posV2;
                 if (Vector2.Distance(transform.position, spawnTarget) < 5f) reachedSpawnTarget = true;
 
                 return;
