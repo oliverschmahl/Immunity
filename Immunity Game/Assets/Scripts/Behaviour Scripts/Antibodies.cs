@@ -51,11 +51,11 @@ namespace Behaviour_Scripts
 
             // Check if the stunned target has been killed
             if (state == State.stunning) {
-                if (target.activeSelf == false) {
+                if (target == null) {
                     state = State.searching;
                     spriteManager.changeSprite(1);
                 }
-
+                
                 return;
             }
 

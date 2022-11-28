@@ -40,7 +40,7 @@ namespace Managers
         public void Spawn(Vector2 location, Vector2 spawnTarget)
         {
             var spawned = Instantiate(neutrophilPrefab, location, quaternion.identity);
-            spawned.transform.parent = MacrophageManager.Instance.transform;
+            spawned.transform.parent = Instance.transform;
             spawned.GetComponent<Neutrophil>().spawnTarget = spawnTarget;
             Add(spawned);
         }

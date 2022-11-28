@@ -24,6 +24,9 @@ public class SpriteManager : MonoBehaviour
     // Changes the sprite of the SpriteRenderer to the specified index in the Sprite array
     public void changeSprite(int index)
     {
-        spriteRenderer.sprite = spriteArray[index];
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.sprite = spriteArray[index];
+        }
     }
 }

@@ -18,14 +18,33 @@ public class Health : MonoBehaviour
         {
             switch (tag)
             {
-                case "Cell": 
+                case "Cell":
                     CellManager.Instance.RemoveCell(gameObject);
+                    Debug.Log("Cell removed");
                     break;
                 case "Bacteria Small":
-                    BacteriaSmallManager.Instance.RemoveBacteria(bacteria: gameObject);
+                    BacteriaSmallManager.Instance.RemoveBacteria(gameObject);
+                    Debug.Log("Small Bacteria removed");
+                    break;
+                case "Bacteria Large":
+                    BacteriaLargeManager.Instance.RemoveBacteria(gameObject);
+                    Debug.Log("Large Bacteria removed");
+                    break;
+                case "T Cell":
+                    TcellManager.Instance.RemoveTcell(gameObject);
+                    Debug.Log("T Cell removed");
+                    break;
+                case "Macrophage":
+                    MacrophageManager.Instance.RemoveMacrophage(gameObject);
+                    Debug.Log("Macrophage removed");
+                    break;
+                case "Antibodies":
+                    AntibodiesManager.Instance.RemoveAntibodies(gameObject);
+                    Debug.Log("Antibodie removed");
                     break;
                 case "Complement Protein":
-                    ComplementProteinManager.Instance.RemoveComplementProtein(complementProtein: gameObject);
+                    ComplementProteinManager.Instance.RemoveComplementProtein(gameObject);
+                    Debug.Log("Complement Protein removed");
                     break;
             }
         }

@@ -111,6 +111,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8517281925649210451}
   - component: {fileID: 1016809533536357152}
+  - component: {fileID: 196082924905778874}
+  - component: {fileID: 5259359003893250592}
   m_Layer: 0
   m_Name: T Cell
   m_TagString: T Cell
@@ -149,3 +151,32 @@ MonoBehaviour:
   spawnTarget: {x: 0, y: 0}
   movementSpeed: 3
   rotationSpeed: 0.8
+--- !u!70 &196082924905778874
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8873056958125645351}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.09400477, y: -0.07833648}
+  m_Size: {x: 3.5551312, y: 2.7090998}
+  m_Direction: 1
+--- !u!114 &5259359003893250592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8873056958125645351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7768cf4cfa684f70a1be0d0090c2745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 200

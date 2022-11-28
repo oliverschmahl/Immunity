@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6655345740752423647}
   - component: {fileID: 6974845845507927818}
+  - component: {fileID: 1660316577245618733}
+  - component: {fileID: 7548611497348622106}
   m_Layer: 0
   m_Name: Macrophage
   m_TagString: Macrophage
@@ -50,9 +52,53 @@ MonoBehaviour:
   movementSpeed_Angry: 2.2
   rotationSpeed_Angry: 1.7
   state: 0
+  damage: 100
   killsLeft: 25
   target: {fileID: 0}
   spawnTarget: {x: 0, y: 0}
+--- !u!68 &1660316577245618733
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079245128610089914}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 1
+  m_Points:
+  - {x: -0.41239905, y: 3.9981778}
+  - {x: -1.8467553, y: 3.1702683}
+  - {x: -1.9131725, y: 0.8608581}
+  - {x: -1.6846671, y: -1.3778163}
+  - {x: -1.2790325, y: -2.1837592}
+  - {x: -0.11830819, y: -2.7519526}
+  - {x: 0.815138, y: -1.6722875}
+  - {x: 1.2730806, y: 0.79551864}
+  - {x: 1.417937, y: 2.954543}
+  - {x: 0.05320692, y: 3.8938215}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
+--- !u!114 &7548611497348622106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079245128610089914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7768cf4cfa684f70a1be0d0090c2745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 200
 --- !u!1 &5825199991732526534
 GameObject:
   m_ObjectHideFlags: 0

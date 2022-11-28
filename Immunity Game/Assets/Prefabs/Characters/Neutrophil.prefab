@@ -149,7 +149,7 @@ MonoBehaviour:
   state: 0
   maxSpeed: 2
   steerStrength: 1
-  damage: 100
+  damage: 50
   damageRange: 5
   guuDamage: 2
   gooSeconds: 25

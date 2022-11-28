@@ -64,8 +64,7 @@ namespace Behaviour_Scripts
                 float distanceToTarget = Vector2.Distance(complementProteinPosition, targetPosition);
                 if (distanceToTarget < attackRange)
                 {
-                    var healthComponent = _target.GetComponent<Health>();
-                    healthComponent.TakeDamage(damage);
+                    _target.GetComponent<Health>().TakeDamage(damage);
                 }
             }
         }
