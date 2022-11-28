@@ -23,7 +23,7 @@ namespace Behaviour_Scripts
         [SerializeField] private float rotationSpeed_Angry = 1.2f;
 
         [SerializeField] private State state = State.Normal;
-        
+        [SerializeField] private int damage = 100;
         [SerializeField] private int killsLeft = 100;
 
         private float _movementSpeed;
@@ -107,7 +107,7 @@ namespace Behaviour_Scripts
                 float distanceToTarget = Vector2.Distance(macrophagePosition, targetPosition);
                 if (distanceToTarget < 1f)
                 {
-                    target.SetActive(false);
+                    target.GetComponent<Health>().TakeDamage(damage); // Gives damage
                     if (killsLeft > 0 ) {
                         killsLeft -= 1;
                     }

@@ -88,7 +88,10 @@ namespace Behaviour_Scripts
                 if (Vector2.Distance(position, (Vector2)targetCell) < damageRange)
                 {
                     targetCell = null;
-                    visitedCell.GetComponent<Health>().TakeDamage(damage);
+                    if (visitedCell != null)
+                    {
+                        visitedCell.GetComponent<Health>().TakeDamage(damage);
+                    }
                 }
             }
         }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4524151888345912425}
   - component: {fileID: 5806703797005169751}
   - component: {fileID: 7407528937910467280}
+  - component: {fileID: 538754154370262821}
   m_Layer: 0
   m_Name: Complement Protein
   m_TagString: Complement Protein
@@ -46,6 +47,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab5a7e9001d44ab28f1a1ce77314acee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSpeed: 1
+  rotationSpeed: 0.5
+  damage: 1
+  attackRange: 1
+  _target: {fileID: 0}
+  spawnTarget: {x: 0, y: 0}
 --- !u!114 &7407528937910467280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,7 +65,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7768cf4cfa684f70a1be0d0090c2745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 200
+--- !u!68 &538754154370262821
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872788099868653436}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0.5
+  m_Points:
+  - {x: -1.5862498, y: 1.3264778}
+  - {x: -0.95514905, y: 0.68443596}
+  - {x: -0.092706755, y: 0.7002712}
+  - {x: -0.09030815, y: -1.3416305}
+  - {x: -0.083492875, y: 0.70211565}
+  - {x: 0.71845716, y: 0.7318918}
+  - {x: 1.3878005, y: 1.2951436}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &1485078771661312957
 GameObject:
   m_ObjectHideFlags: 0

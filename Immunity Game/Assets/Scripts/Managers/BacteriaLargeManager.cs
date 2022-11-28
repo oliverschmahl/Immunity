@@ -49,5 +49,11 @@ namespace Managers
                 }
             }
         }
+        
+        public void RemoveBacteria(GameObject bacteria)
+        {
+            pooledBacterias.Remove(bacteria);
+            Destroy(bacteria);
+        }
     }
 }
