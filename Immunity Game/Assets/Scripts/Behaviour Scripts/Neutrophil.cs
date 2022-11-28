@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Managers;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -32,6 +33,7 @@ namespace Behaviour_Scripts
         [Tooltip("Damage dealt to bacteria within the explosion radius")]
         public int damage = 100;
         public float damageRange = 5f;
+        private CircleCollider2D _explosionCollider;
         public int guuDamage = 2;
         #endregion
 
@@ -64,6 +66,7 @@ namespace Behaviour_Scripts
             _spriteManager = GetComponentInChildren<SpriteManager>();
             _particleSystem = GetComponentInChildren<ParticleSystem>();
             _gooCollider = GetComponentInChildren<CircleCollider2D>();
+            _explosionCollider = GetComponentInChildren<CircleCollider2D>();
         }
 
         private void Start()
@@ -125,7 +128,13 @@ namespace Behaviour_Scripts
             foreach (Collider2D objectInsideGuuArea in objectsInsideGuuArea)
             {
                 GameObject objectInsideGameObject = objectInsideGuuArea.gameObject;
-                if (objectInsideGameObject.CompareTag("Bacteria Large") || objectInsideGameObject.CompareTag("Bacteria Small"))
+                if (objectInsideGameObject.CompareTag("Bacteria Large") ||
+                    objectInsideGameObject.CompareTag("Bacteria Small") ||
+                    objectInsideGameObject.CompareTag("Cell") ||
+                    objectInsideGameObject.CompareTag("T Cell") ||
+                    objectInsideGameObject.CompareTag("Macrophage") ||
+                    objectInsideGameObject.CompareTag("Complement Protein") ||
+                    objectInsideGameObject.CompareTag("Antibodies"))
                 {
                     if (_passedTime > _lastTime + 1) objectInsideGuuArea.gameObject.GetComponent<Health>().TakeDamage(guuDamage);
                 }
@@ -139,12 +148,24 @@ namespace Behaviour_Scripts
         {
             _particleSystem.Play();
             state = State.Exploded;
-            foreach (GameObject bacterium in BacteriaSmallManager.Instance.pooledBacterias)
-            {
-                if (!bacterium.activeInHierarchy) continue;
-                if (Vector2.Distance(neutrophilPosition, bacterium.transform.position) < damageRange) bacterium.GetComponent<Health>().TakeDamage(damage);
-            }
+            
+            List<Collider2D> objectsInsideExplosionArea = new List<Collider2D>();
+            _explosionCollider.OverlapCollider(new ContactFilter2D(), objectsInsideExplosionArea);
 
+            foreach (Collider2D objectInsideExplosionArea in objectsInsideExplosionArea)
+            {
+                GameObject objectInsideGameObject = objectInsideExplosionArea.gameObject;
+                if (objectInsideGameObject.CompareTag("Bacteria Large") ||
+                    objectInsideGameObject.CompareTag("Bacteria Small") ||
+                    objectInsideGameObject.CompareTag("Cell") ||
+                    objectInsideGameObject.CompareTag("T Cell") ||
+                    objectInsideGameObject.CompareTag("Macrophage") ||
+                    objectInsideGameObject.CompareTag("Complement Protein") ||
+                    objectInsideGameObject.CompareTag("Antibodies"))
+                {
+                    objectInsideExplosionArea.gameObject.GetComponent<Health>().TakeDamage(damage);
+                }
+            }
             _hasExploded = true;
         }
     }
