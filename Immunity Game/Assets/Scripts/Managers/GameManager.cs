@@ -59,6 +59,10 @@ namespace Managers
                         NeutrophilManager.Instance.Spawn(new Vector2(0f,0f), worldLocation);
                         selectedOrganism = "null";
                         break;
+                    case "Complement Protein":
+                        ComplementProteinManager.Instance.SpawnComplementProtein(new Vector2(0f,0f), worldLocation);
+                        selectedOrganism = "null";
+                        break;
                 }
             }
         }

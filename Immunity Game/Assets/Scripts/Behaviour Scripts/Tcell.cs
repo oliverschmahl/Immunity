@@ -37,10 +37,12 @@ namespace Behaviour_Scripts
                 _transform.position = _pos;
                 transform.right = spawnTarget - _posV2;
                 if (Vector2.Distance(transform.position, spawnTarget) < 5f) reachedSpawnTarget = true;
+                return;
             }
-
-            bool areThereMacrophages = macrophages.Count > 0;
-            if (!areThereMacrophages) return;
+            
+            macrophages = MacrophageManager.Instance.macrophageList; // Update macrophage list
+            bool areThereMacrophages = macrophages.Count > 0; // Sets true if any macrophages exists
+            if (!areThereMacrophages) return; // If there are no macrophages, then do nothing
 
             FindTarget();
 

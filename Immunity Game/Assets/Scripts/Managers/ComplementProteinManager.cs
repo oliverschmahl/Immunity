@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Behaviour_Scripts;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Managers
@@ -36,7 +37,7 @@ namespace Managers
 
         public void SpawnComplementProtein(Vector2 location, Vector2 spawnTarget)
         {
-            var spawnedObject = Instantiate(complementProteinPrefab, location, Quaternion.identity);
+            var spawnedObject = Instantiate(complementProteinPrefab, location, quaternion.identity);
             spawnedObject.transform.parent = Instance.transform;
             spawnedObject.GetComponent<ComplementProtein>().spawnTarget = spawnTarget;
             AddComplementProteinToList(spawnedObject);

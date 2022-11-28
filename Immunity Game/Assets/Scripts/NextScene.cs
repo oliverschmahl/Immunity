@@ -5,16 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class NextScene : MonoBehaviour
 {
-    public string nextScene;
-    // Start is called before the first frame update
-    void Start()
+    private int nextScene;
+    void RunNextSceneByIndex()
     {
-        ExecuteNextScene(nextScene);
+        nextScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(nextScene);
     }
-
-    public void ExecuteNextScene(string next) {
-        SceneManager.LoadScene(next);
-    }
-    
-    
 }
