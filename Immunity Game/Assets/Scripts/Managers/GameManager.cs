@@ -63,6 +63,10 @@ namespace Managers
                         ComplementProteinManager.Instance.SpawnComplementProtein(new Vector2(0f,0f), worldLocation);
                         selectedOrganism = "null";
                         break;
+                    case "Antibodies":
+                        AntibodiesManager.Instance.Spawn(new Vector2(0f,0f), worldLocation);
+                        selectedOrganism = "null";
+                        break;
                 }
             }
         }
