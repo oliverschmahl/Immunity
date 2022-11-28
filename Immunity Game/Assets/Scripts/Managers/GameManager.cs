@@ -16,12 +16,24 @@ namespace Managers
         [SerializeField, Range(0f, 100f)] public float playableAreaPadding = 2f;
         [SerializeField] private string selectedOrganism = "null";
         
+        public Vector2 macrophageSpawnPos;
+        public Vector2 neutrophilSpawnPos;
+        public Vector2 complementProteinSpawnPos;
+        public Vector2 tcellSpawnPos;
+        public Vector2 antibodiesSpawnPos;
+        
         private readonly Vector3[] _worldCorners = new Vector3[4];
 
         private void Awake()
         {
             instance = this;
             instance.playableArea.GetWorldCorners(_worldCorners);
+        
+            macrophageSpawnPos = new Vector2(-40,-86);
+            neutrophilSpawnPos = new Vector2(-20,-83);
+            complementProteinSpawnPos = new Vector2(0, -82);
+            tcellSpawnPos = new Vector2(20, -82);
+            antibodiesSpawnPos = new Vector2(40, -84);
         }
 
         public Vector3[] GetWorldCorners()
@@ -49,24 +61,24 @@ namespace Managers
                 worldLocation.z = 10;
                 switch (selectedOrganism)
                 {
-                    case "T Cell":
-                        TcellManager.Instance.Spawn(new Vector2(0f, 0f) ,worldLocation);
-                        selectedOrganism = "null";
-                        break;
                     case "Macrophage":
-                        MacrophageManager.Instance.Spawn(new Vector2(0f,0f), worldLocation);
+                        MacrophageManager.Instance.Spawn(macrophageSpawnPos, worldLocation);
                         selectedOrganism = "null";
                         break;
                     case "Neutrophil":
-                        NeutrophilManager.Instance.Spawn(new Vector2(0f,0f), worldLocation);
+                        NeutrophilManager.Instance.Spawn(neutrophilSpawnPos, worldLocation);
                         selectedOrganism = "null";
                         break;
                     case "Complement Protein":
-                        ComplementProteinManager.Instance.SpawnComplementProtein(new Vector2(0f,0f), worldLocation);
+                        ComplementProteinManager.Instance.SpawnComplementProtein(complementProteinSpawnPos, worldLocation);
+                        selectedOrganism = "null";
+                        break;
+                    case "T Cell":
+                        TcellManager.Instance.Spawn(tcellSpawnPos ,worldLocation);
                         selectedOrganism = "null";
                         break;
                     case "Antibodies":
-                        AntibodiesManager.Instance.Spawn(new Vector2(0f,0f), worldLocation);
+                        AntibodiesManager.Instance.Spawn(antibodiesSpawnPos, worldLocation);
                         selectedOrganism = "null";
                         break;
                 }

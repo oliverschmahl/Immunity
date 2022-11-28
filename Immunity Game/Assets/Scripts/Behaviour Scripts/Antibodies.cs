@@ -87,7 +87,7 @@ namespace Behaviour_Scripts
                         spriteManager.changeSprite((int) State.stunning);
                     }
                 }
-
+                
                 return;
             }
         }

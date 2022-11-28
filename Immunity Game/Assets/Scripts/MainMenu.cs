@@ -5,13 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public string nextScene;
     public GameObject optionsScreen;
 
     /*Starts the game by playing the first level scene*/
     public void StartGame()
     {
-        SceneManager.LoadScene(nextScene);
+        SceneManager.LoadScene(1);
     }
     
     /*Opens the options menu*/

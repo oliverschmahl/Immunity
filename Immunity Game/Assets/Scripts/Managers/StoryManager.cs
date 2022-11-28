@@ -10,6 +10,7 @@ public class StoryManager : MonoBehaviour
 {
     private int ns;
     public bool currentSceneIsALevel;
+    public bool currentSceneIsSkipScene;
 
     // Update is called once per frame
     void Update()
@@ -21,7 +22,23 @@ public class StoryManager : MonoBehaviour
             //if (BacteriaLargeManager.Instance == null && BacteriaSmallManager.Instance == null)
             if(Input.GetKey(KeyCode.X) || noMoreBacteria()) // Needs to be deleted upon final arrival
             {
-                nextScene();
+                //nextScene();
+                loadWonScene();
+                return;
+            }
+
+            if (Input.GetKey(KeyCode.Z) || noMoreCells()) // Needs to be deleted upon final arrival
+            {
+                loadLostScene();
+            }
+            return;
+        }
+        
+        if (currentSceneIsSkipScene)
+        {
+            if(Input.anyKey)
+            {
+                loadMainMenu();
             }
             return;
         }
@@ -39,6 +56,24 @@ public class StoryManager : MonoBehaviour
         print("Scene was changed to scene index: " + ns);
     }
     
+    private void loadMainMenu()
+    {
+        SceneManager.LoadScene(0);
+        print("Scene was changed to Main Menu: ");
+    }
+    
+    private void loadWonScene()
+    {
+        SceneManager.LoadScene("Scenes/Other/Level_Won");
+        print("Scene was changed to Main Menu: ");
+    }
+    
+    private void loadLostScene()
+    {
+        SceneManager.LoadScene("Scenes/Other/Level_Lost");
+        print("Scene was changed to Main Menu: ");
+    }
+    
     private bool noMoreBacteria()
     {
         List<GameObject> bacteriaSmall = BacteriaSmallManager.Instance.pooledBacterias;
@@ -46,11 +81,24 @@ public class StoryManager : MonoBehaviour
 
         GameObject[] bacteria = bacteriaLarge.Concat(bacteriaSmall).ToArray();
             
-        //print(bacteria.Length);
-            
-        if (bacteria.Length < 1)
+        if (!bacteria.Any() )
         {
             print("YOU WON!");
+            return true;
+        }
+        return false;
+    }
+    
+    private bool noMoreCells()
+    {
+        List<GameObject> cells = CellManager.Instance.cellList;
+        List<GameObject> bacteriaLarge = BacteriaLargeManager.Instance.pooledBacterias;
+
+        GameObject[] cell = cells.ToArray();
+            
+        if (!cell.Any() )
+        {
+            print("YOU LOST!");
             return true;
         }
         return false;

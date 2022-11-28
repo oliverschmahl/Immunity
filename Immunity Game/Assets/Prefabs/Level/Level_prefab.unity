@@ -423,6 +423,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 19097ff063ee98d4a8b5391f282de5a0, type: 3}
+    - target: {fileID: 4197692055948599880, guid: fee3de3601ce0d244be7fcf3da234aeb, type: 3}
+      propertyPath: pooledAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4782432459316968606, guid: fee3de3601ce0d244be7fcf3da234aeb, type: 3}
+      propertyPath: pooledAmount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8400718361295040263, guid: fee3de3601ce0d244be7fcf3da234aeb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: T Cell
@@ -447,6 +455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSceneIsALevel: 1
+  currentSceneIsSkipScene: 0
 --- !u!1 &1727479281
 GameObject:
   m_ObjectHideFlags: 0
