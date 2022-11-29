@@ -53,7 +53,7 @@ namespace Behaviour_Scripts
             if (state == State.stunning) {
                 if (target == null) {
                     state = State.searching;
-                    spriteManager.changeSprite(1);
+                    spriteManager.changeSprite((int) state);
                 }
                 
                 return;
