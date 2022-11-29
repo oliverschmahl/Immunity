@@ -33,7 +33,7 @@ namespace Behaviour_Scripts
         }
 
         void Update() {
-
+            if (GameManager.instance.IsPaused) return;
             if (!reachedSpawnTarget)
             {
                 float step = movementSpeed * Time.deltaTime;

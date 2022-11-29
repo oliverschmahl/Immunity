@@ -92,7 +92,6 @@ public class StoryManager : MonoBehaviour
     private bool noMoreCells()
     {
         List<GameObject> cells = CellManager.Instance.cellList;
-        List<GameObject> bacteriaLarge = BacteriaLargeManager.Instance.pooledBacterias;
 
         GameObject[] cell = cells.ToArray();
             
