@@ -105,7 +105,7 @@ namespace Behaviour_Scripts
                 transform.up = newDirection;
 
                 float distanceToTarget = Vector2.Distance(macrophagePosition, targetPosition);
-                if (distanceToTarget < 1f)
+                if (distanceToTarget < 2f)
                 {
                     target.GetComponent<Health>().TakeDamage(damage); // Gives damage
                     if (killsLeft > 0 ) {

@@ -23,13 +23,13 @@ public class BacteriaSpawner : MonoBehaviour
         yield return new WaitWhile(() => GameManager.instance.isPaused);
         yield return new WaitForSeconds(interval);
 
-        if (type.Equals("small") && numberOfSmallBacteriaToSpawn !> 1)
+        if (type.Equals("small") && numberOfSmallBacteriaToSpawn > 0)
         {
             BacteriaSmallManager.Instance.SpawnBacteria(transform.position);
             numberOfSmallBacteriaToSpawn -= 1;
         }
         
-        if (type.Equals("large") && numberOfLargeBacteriaToSpawn !> 1)
+        if (type.Equals("large") && numberOfLargeBacteriaToSpawn > 0)
         {
             BacteriaLargeManager.Instance.SpawnBacteria(transform.position);
             numberOfLargeBacteriaToSpawn -= 1;
