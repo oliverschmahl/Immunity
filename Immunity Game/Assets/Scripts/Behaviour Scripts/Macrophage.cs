@@ -4,6 +4,7 @@ using System.Linq;
 using Managers;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace Behaviour_Scripts
 {
@@ -86,8 +87,11 @@ namespace Behaviour_Scripts
                 if (Vector2.Distance(transform.position, spawnTarget) < 3f) _reachedSpawnTarget = true;
                 return;
             }
-            
-            FindTarget();
+
+            if (!target)
+            {
+                FindTarget();
+            }
             if (target)
             {
                 var macrophageTransform = transform;
@@ -111,6 +115,8 @@ namespace Behaviour_Scripts
                     if (killsLeft > 0 ) {
                         killsLeft -= 1;
                     }
+
+                    target = null;
                 }
             }
         }
@@ -121,21 +127,38 @@ namespace Behaviour_Scripts
             List<GameObject> bacteriaLarge = BacteriaLargeManager.Instance.pooledBacterias;
 
             GameObject[] bacteria = bacteriaLarge.Concat(bacteriaSmall).ToArray();
+            int maxBacteria = 10;
             
-            float distance = Mathf.Infinity;
-            GameObject closestEnemy = null;
-            foreach (GameObject enemy in bacteria)
+            Array.Sort(bacteria, delegate (GameObject a, GameObject b) {
+                return Vector3.Distance(a.transform.position, transform.position)
+                    .CompareTo(Vector3.Distance(b.transform.position, transform.position));
+            });
+            
+            List<GameObject> closestBacteria = new List<GameObject>();
+            
+            int count = 0;
+            for (int i = 0; i < bacteria.Length; i++)
             {
-                if(!enemy.activeInHierarchy) continue;
+                GameObject closestObject = bacteria[i];
+                if (closestObject.activeInHierarchy)
                 {
-                    float distanceToEnemy = Vector2.Distance(transform.position, enemy.transform.position);
-                    if (distanceToEnemy < distance)
+                    closestBacteria.Add(closestObject);
+                    count++;
+                    if (count >= maxBacteria)
                     {
-                        closestEnemy = enemy;
-                        distance = distanceToEnemy;
+                        break;
                     }
                 }
             }
+            
+            GameObject closestEnemy = null;
+            if (closestBacteria.Count > 0)
+            {
+                var nextTarget = Random.Range(0, closestBacteria.Count - 1);
+                var foundCell = closestBacteria[nextTarget];
+                closestEnemy = foundCell;
+            }
+            
 
             if (closestEnemy)
             {

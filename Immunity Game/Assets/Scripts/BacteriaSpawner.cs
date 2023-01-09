@@ -9,8 +9,6 @@ public class BacteriaSpawner : MonoBehaviour
     [SerializeField] public int numberOfSmallBacteriaToSpawn = 10;
     [SerializeField] public int numberOfLargeBacteriaToSpawn = 10;
 
-    [SerializeField, Range(0f, 300f)] private float spawnDeviation = 40f;
-    
     // Start is called before the first frame update
     void Start()
     {

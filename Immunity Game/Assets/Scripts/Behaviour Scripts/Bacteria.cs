@@ -20,7 +20,6 @@ namespace Behaviour_Scripts
         public float wanderStrength = 0.1f;
         public Vector3? targetCell = null;
         public GameObject visitedCell = null;
-        public float viewRadius = 5f;
         public int damage = 1;
         public float damageRange = 0.5f;
 
@@ -71,18 +70,33 @@ namespace Behaviour_Scripts
         {
             if (targetCell == null)
             {
-                List<GameObject> closeCells = new List<GameObject>();
-
+                int maxCells = 10;
+                var cells = CellManager.Instance.cellList;
+                GameObject[] cellsArray = new GameObject[cells.Count];
+                cells.CopyTo(cellsArray);
                 
-                foreach (GameObject cell in CellManager.Instance.cellList)
+                Array.Sort(cellsArray, delegate (GameObject a, GameObject b) {
+                    return Vector3.Distance(a.transform.position, transform.position)
+                        .CompareTo(Vector3.Distance(b.transform.position, transform.position));
+                });
+
+                List<GameObject> closeCells = new List<GameObject>();
+                
+                int count = 0;
+                for (int i = 0; i < cellsArray.Length; i++)
                 {
-                    float distance = Vector2.Distance(position, cell.transform.position);
-                    if (distance < viewRadius && cell != visitedCell)
+                    GameObject closestObject = cellsArray[i];
+                    if (closestObject.activeInHierarchy)
                     {
-                        closeCells.Add(cell);
+                        closeCells.Add(closestObject);
+                        count++;
+                        if (count >= maxCells)
+                        {
+                            break;
+                        }
                     }
                 }
-
+                
                 if (closeCells.Count > 0)
                 {
                     var nextTarget = Random.Range(0, closeCells.Count - 1);
