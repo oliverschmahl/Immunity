@@ -47,9 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab5a7e9001d44ab28f1a1ce77314acee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 7.5
-  rotationSpeed: 0.5
-  damage: 1
+  movementSpeed: 6
+  rotationSpeed: 1.8
+  damage: 2
   attackRange: 1
   _target: {fileID: 0}
   spawnTarget: {x: 0, y: 0}
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7768cf4cfa684f70a1be0d0090c2745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 20
 --- !u!68 &538754154370262821
 EdgeCollider2D:
   m_ObjectHideFlags: 0

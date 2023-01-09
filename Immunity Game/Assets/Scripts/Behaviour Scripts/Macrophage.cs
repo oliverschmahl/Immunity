@@ -19,8 +19,8 @@ namespace Behaviour_Scripts
         // Serialized fields
         [SerializeField] private float movementSpeed_Normal = 1.2f;
         [SerializeField] private float rotationSpeed_Normal = 0.7f;
-        [SerializeField] private float movementSpeed_Angry = 1.5f;
-        [SerializeField] private float rotationSpeed_Angry = 1.2f;
+        [SerializeField] private float movementSpeed_Angry = 3f;
+        [SerializeField] private float rotationSpeed_Angry = 2f;
         
         [SerializeField] private State state = State.Normal;
         [SerializeField] private int damage = 100;
