@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Other/MainMenu.unity
     guid: 1f62f1b97305314469dbb6c526a6400c
+  - enabled: 1
+    path: Assets/Scenes/Other/Level_Lost.unity
+    guid: 6aa9564ca01adf242846b73c05ddae2d
   - enabled: 0
     path: Assets/Scenes/Other/Story.unity
     guid: 015cb34674360514e9f9fb502c3feca1

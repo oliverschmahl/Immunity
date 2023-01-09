@@ -10,7 +10,7 @@ using UnityEngine.Serialization;
 public class StoryManager : MonoBehaviour
 {
     public bool currentSceneIsALevel;
-    public bool currentSceneIsSkipScene;
+    public bool nextSceneShouldBeMainMenu;
     public BacteriaSpawner bacteriaSpawner;
 
     // Update is called once per frame
@@ -37,7 +37,7 @@ public class StoryManager : MonoBehaviour
             return;
         }
         
-        if (currentSceneIsSkipScene)
+        if (nextSceneShouldBeMainMenu)
         {
             if(Input.anyKey)
             {
