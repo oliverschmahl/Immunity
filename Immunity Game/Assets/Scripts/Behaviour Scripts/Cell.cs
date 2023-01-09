@@ -25,7 +25,7 @@ namespace Behaviour_Scripts
         {
             if (GameManager.instance.IsPaused) return;
             if (_capturedStopBehaviour) return;
-            MoveCell();
+            //MoveCell();
         }
 
         private void MoveCell()

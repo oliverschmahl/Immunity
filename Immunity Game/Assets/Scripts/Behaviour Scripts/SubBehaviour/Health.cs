@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Managers;
@@ -6,6 +7,12 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] private int health = 100;
+    private float maxHealth;
+
+    public void Start()
+    {
+        maxHealth = (float) health;
+    }
 
     public void TakeDamage(int amount) {
         if(amount < 0) {
@@ -13,6 +20,7 @@ public class Health : MonoBehaviour
         }
         
         health -= amount;
+        
 
         if(health <= 0)
         {
@@ -40,7 +48,7 @@ public class Health : MonoBehaviour
                     break;
                 case "Antibodies":
                     AntibodiesManager.Instance.RemoveAntibodies(gameObject);
-                    Debug.Log("Antibodie removed");
+                    Debug.Log("Antibodies removed");
                     break;
                 case "Complement Protein":
                     ComplementProteinManager.Instance.Remove(gameObject);
@@ -48,6 +56,16 @@ public class Health : MonoBehaviour
                     break;
             }
         }
+    }
+
+    public float GetMaxHealth()
+    {
+        return maxHealth;
+    }
+
+    public float GetCurrentHealth()
+    {
+        return (float) health;
     }
 }
 

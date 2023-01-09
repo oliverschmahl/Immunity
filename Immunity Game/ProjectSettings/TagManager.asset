@@ -79,6 +79,9 @@ TagManager:
   - name: UI
     uniqueID: 2978165927
     locked: 0
+  - name: UI PRIORITY
+    uniqueID: 2063595487
+    locked: 0
   - name: Menu
     uniqueID: 3840022303
     locked: 0
