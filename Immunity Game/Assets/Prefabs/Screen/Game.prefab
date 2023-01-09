@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04cd5356cab4a0e4e935b3d0f903a26c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownDuration: 5
+  cooldownDuration: 2
 --- !u!1 &561531656219853476
 GameObject:
   m_ObjectHideFlags: 0
@@ -1384,7 +1384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04cd5356cab4a0e4e935b3d0f903a26c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownDuration: 5
+  cooldownDuration: 10
 --- !u!1 &1639583989721050823
 GameObject:
   m_ObjectHideFlags: 0
@@ -4000,7 +4000,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04cd5356cab4a0e4e935b3d0f903a26c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownDuration: 5
+  cooldownDuration: 15
 --- !u!1 &2154013322200414220
 GameObject:
   m_ObjectHideFlags: 0
@@ -4147,7 +4147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04cd5356cab4a0e4e935b3d0f903a26c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownDuration: 5
+  cooldownDuration: 20
 --- !u!1 &2177314023068147243
 GameObject:
   m_ObjectHideFlags: 0
