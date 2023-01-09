@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
     /*Starts the game by playing the first level scene*/
     public void StartGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Scenes/1 LEVEL/FirstStory");
     }
     
     /*Opens the options menu*/

@@ -9,7 +9,6 @@ using UnityEngine.Serialization;
 
 public class StoryManager : MonoBehaviour
 {
-    private int ns;
     public bool currentSceneIsALevel;
     public bool currentSceneIsSkipScene;
     public BacteriaSpawner bacteriaSpawner;
@@ -24,14 +23,16 @@ public class StoryManager : MonoBehaviour
             //if (BacteriaLargeManager.Instance == null && BacteriaSmallManager.Instance == null)
             if(Input.GetKey(KeyCode.X) || noMoreBacteria()) // Needs to be deleted upon final arrival
             {
-                //nextScene();
-                loadWonScene();
+                int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+                nextScene(currentSceneIndex);
+                print("BUTTON X PRESSED");
                 return;
             }
 
             if (Input.GetKey(KeyCode.Z) || noMoreCells()) // Needs to be deleted upon final arrival
             {
                 loadLostScene();
+                print("BUTTON Z PRESSED");
             }
             return;
         }
@@ -47,15 +48,16 @@ public class StoryManager : MonoBehaviour
         
         if (Input.anyKey)
         {
-            nextScene();
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            nextScene(currentSceneIndex);
         }
     }
 
-    private void nextScene()
+    private void nextScene(int currentSceneIndex)
     {
-        ns = SceneManager.GetActiveScene().buildIndex + 1;
-        SceneManager.LoadScene(ns);
-        print("Scene was changed to scene index: " + ns);
+        int nsi = currentSceneIndex + 1;
+        SceneManager.LoadScene(nsi);
+        print("Scene was changed to scene index: " + nsi);
     }
     
     private void loadMainMenu()
@@ -63,17 +65,11 @@ public class StoryManager : MonoBehaviour
         SceneManager.LoadScene(0);
         print("Scene was changed to Main Menu: ");
     }
-    
-    private void loadWonScene()
-    {
-        SceneManager.LoadScene("Scenes/Other/Level_Won");
-        print("Scene was changed to Main Menu: ");
-    }
-    
+
     private void loadLostScene()
     {
-        SceneManager.LoadScene("Scenes/Other/Level_Lost");
-        print("Scene was changed to Main Menu: ");
+        SceneManager.LoadScene(1);
+        print("Scene was changed to Loser Scene");
     }
     
     private bool noMoreBacteria()

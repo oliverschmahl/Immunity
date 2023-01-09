@@ -1675,7 +1675,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSceneIsALevel: 0
-  currentSceneIsSkipScene: 1
+  currentSceneIsSkipScene: 0
+  bacteriaSpawner: {fileID: 0}
 --- !u!223 &3016833913970979436
 Canvas:
   m_ObjectHideFlags: 0
