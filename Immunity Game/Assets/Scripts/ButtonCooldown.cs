@@ -1,25 +1,28 @@
 using System;
 using System.Collections;
+using System.Globalization;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ButtonCooldown : MonoBehaviour
 {
-    private Button myButton;
+    private Button button;
+    private TMP_Text timerText;
     [SerializeField] float cooldownDuration = 5f;
  
     void Awake()
     {
         // Get a reference to your button
-        myButton = GetComponent<Button>();
-         
-        if (myButton != null)
+        button = GetComponent<Button>();
+        if (button != null)
         {
             // Listen to its onClick event
-            myButton.onClick.AddListener(OnButtonClick);
+            button.onClick.AddListener(OnButtonClick);
+            timerText = GetComponentInChildren<TMP_Text>();
         }
     }
- 
+
     // method is called whenever myButton is pressed
     void OnButtonClick()
     {
@@ -30,10 +33,15 @@ public class ButtonCooldown : MonoBehaviour
     IEnumerator Cooldown()
     {
         // Deactivate myButton
-        myButton.interactable = false;
-        // Wait for cooldown duration
-        yield return new WaitForSeconds(cooldownDuration);
+        button.interactable = false;
+        
+        for (float i = 0; i < cooldownDuration; i++)
+        {
+            timerText.text = (cooldownDuration - i).ToString();
+            yield return new WaitForSeconds(1);
+        }
         // Reactivate myButton
-        myButton.interactable = true;
+        timerText.text = "";
+        button.interactable = true;
     }
 }

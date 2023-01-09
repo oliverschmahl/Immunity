@@ -4972,6 +4972,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 65
       objectReference: {fileID: 0}
+    - target: {fileID: 7570718211239207955, guid: fee3de3601ce0d244be7fcf3da234aeb, type: 3}
+      propertyPath: cooldownDuration
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 7925073590740542931, guid: fee3de3601ce0d244be7fcf3da234aeb, type: 3}
       propertyPath: m_IsActive
       value: 1
