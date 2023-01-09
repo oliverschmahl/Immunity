@@ -127,15 +127,21 @@ namespace Behaviour_Scripts
             foreach (GameObject enemy in bacteria)
             {
                 if(!enemy.activeInHierarchy) continue;
-                float distanceToEnemy = Vector2.Distance(transform.position, enemy.transform.position);
-                if (distanceToEnemy < distance)
                 {
-                    closestEnemy = enemy;
-                    distance = distanceToEnemy;
+                    float distanceToEnemy = Vector2.Distance(transform.position, enemy.transform.position);
+                    if (distanceToEnemy < distance)
+                    {
+                        closestEnemy = enemy;
+                        distance = distanceToEnemy;
+                    }
                 }
             }
 
-            if (closestEnemy) target = closestEnemy;
+            if (closestEnemy)
+            {
+                target = closestEnemy;
+            }
+            
         }
 
         public State getState() {
