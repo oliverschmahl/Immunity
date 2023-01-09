@@ -5,12 +5,14 @@ using System.Linq;
 using Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class StoryManager : MonoBehaviour
 {
     private int ns;
     public bool currentSceneIsALevel;
     public bool currentSceneIsSkipScene;
+    public BacteriaSpawner bacteriaSpawner;
 
     // Update is called once per frame
     void Update()
@@ -81,7 +83,10 @@ public class StoryManager : MonoBehaviour
 
         GameObject[] bacteria = bacteriaLarge.Concat(bacteriaSmall).ToArray();
             
-        if (!bacteria.Any() )
+        if (
+            !bacteria.Any() && 
+            bacteriaSpawner.numberOfSmallBacteriaToSpawn < 1 && 
+            bacteriaSpawner.numberOfLargeBacteriaToSpawn < 1)
         {
             print("YOU WON!");
             return true;

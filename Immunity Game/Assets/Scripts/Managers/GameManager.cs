@@ -70,7 +70,7 @@ namespace Managers
                         selectedOrganism = "null";
                         break;
                     case "Complement Protein":
-                        ComplementProteinManager.Instance.SpawnComplementProtein(complementProteinSpawnPos, worldLocation);
+                        ComplementProteinManager.Instance.Spawn(complementProteinSpawnPos, worldLocation);
                         selectedOrganism = "null";
                         break;
                     case "T Cell":
