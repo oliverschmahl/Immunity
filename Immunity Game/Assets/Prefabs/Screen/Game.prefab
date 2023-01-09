@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2941362573401239329}
   - component: {fileID: 4212879878370125286}
   - component: {fileID: 1251602701445267371}
+  - component: {fileID: 3191648276447564702}
   m_Layer: 0
   m_Name: Complement_Protein_Button
   m_TagString: Untagged
@@ -133,6 +134,19 @@ MonoBehaviour:
           m_StringArgument: Complement Protein
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3191648276447564702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212796160843442190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04cd5356cab4a0e4e935b3d0f903a26c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownDuration: 5
 --- !u!1 &561531656219853476
 GameObject:
   m_ObjectHideFlags: 0
@@ -1236,6 +1250,7 @@ GameObject:
   - component: {fileID: 1639583989652184965}
   - component: {fileID: 1639583989652184964}
   - component: {fileID: 1639583989652184971}
+  - component: {fileID: 7570718211239207955}
   m_Layer: 0
   m_Name: Macrophage_Button
   m_TagString: Untagged
@@ -1357,6 +1372,19 @@ MonoBehaviour:
           m_StringArgument: Macrophage
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7570718211239207955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639583989652184969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04cd5356cab4a0e4e935b3d0f903a26c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownDuration: 5
 --- !u!1 &1639583989721050823
 GameObject:
   m_ObjectHideFlags: 0
@@ -3838,6 +3866,7 @@ GameObject:
   - component: {fileID: 4491047628550537923}
   - component: {fileID: 6309583408631111852}
   - component: {fileID: 2094645478443400717}
+  - component: {fileID: 8927605563704218292}
   m_Layer: 0
   m_Name: Neutrophil_Button
   m_TagString: Untagged
@@ -3959,6 +3988,19 @@ MonoBehaviour:
           m_StringArgument: Neutrophil
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8927605563704218292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887659521922915339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04cd5356cab4a0e4e935b3d0f903a26c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownDuration: 5
 --- !u!1 &2154013322200414220
 GameObject:
   m_ObjectHideFlags: 0
@@ -3971,6 +4013,7 @@ GameObject:
   - component: {fileID: 6700403455695186042}
   - component: {fileID: 5683221506129810212}
   - component: {fileID: 8400718361295040263}
+  - component: {fileID: 242341914995500384}
   m_Layer: 0
   m_Name: T_Cell_Button
   m_TagString: Untagged
@@ -4092,6 +4135,19 @@ MonoBehaviour:
           m_StringArgument: T Cell
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &242341914995500384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2154013322200414220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04cd5356cab4a0e4e935b3d0f903a26c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownDuration: 5
 --- !u!1 &2177314023068147243
 GameObject:
   m_ObjectHideFlags: 0
@@ -5824,6 +5880,7 @@ GameObject:
   - component: {fileID: 4446643775980580469}
   - component: {fileID: 2149014048232840158}
   - component: {fileID: 192701968125161165}
+  - component: {fileID: 405052577959580302}
   m_Layer: 0
   m_Name: Antibodies_Button
   m_TagString: Untagged
@@ -5945,6 +6002,19 @@ MonoBehaviour:
           m_StringArgument: Antibodies
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &405052577959580302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8630847101712361424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04cd5356cab4a0e4e935b3d0f903a26c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownDuration: 5
 --- !u!1001 &1639583989305184372
 PrefabInstance:
   m_ObjectHideFlags: 0
