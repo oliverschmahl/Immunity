@@ -731,18 +731,18 @@ PrefabInstance:
     - target: {fileID: 1639583990787278663, guid: fee3de3601ce0d244be7fcf3da234aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 19097ff063ee98d4a8b5391f282de5a0, type: 3}
+      objectReference: {fileID: 21300000, guid: 2e0afbba6a82ea241809533ae3f4bde1, type: 3}
     - target: {fileID: 2094645478443400717, guid: fee3de3601ce0d244be7fcf3da234aeb, type: 3}
       propertyPath: m_Interactable
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2652545199375140659, guid: fee3de3601ce0d244be7fcf3da234aeb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.7
+      value: -16.3
       objectReference: {fileID: 0}
     - target: {fileID: 2652545199375140659, guid: fee3de3601ce0d244be7fcf3da234aeb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 99.5
+      value: 69.1
       objectReference: {fileID: 0}
     - target: {fileID: 2652545199375140660, guid: fee3de3601ce0d244be7fcf3da234aeb, type: 3}
       propertyPath: numberOfLargeBacteriaToSpawn
