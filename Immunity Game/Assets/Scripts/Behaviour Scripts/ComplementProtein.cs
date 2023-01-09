@@ -9,9 +9,9 @@ namespace Behaviour_Scripts
     public class ComplementProtein : MonoBehaviour
     {
         [SerializeField] private float movementSpeed = 1f;
-        [SerializeField] private float rotationSpeed = 0.5f;
-        [SerializeField, Range(1, 30)] private int damage = 1;
-        [SerializeField, Range(1f,5f)] private float attackRange = 1f;
+        [SerializeField] private float rotationSpeed = 0.75f;
+        [SerializeField, Range(1, 30)] private int damage = 34;
+        [SerializeField, Range(1f,5f)] private float attackRange = 2f;
 
         private List<GameObject> _bacteriaSmall;
         private List<GameObject> _bacteriaLarge;

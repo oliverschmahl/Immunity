@@ -151,7 +151,7 @@ MonoBehaviour:
   steerStrength: 1
   damage: 200
   damageRange: 5
-  guuDamage: 2
+  guuDamage: 5
   gooSeconds: 25
   shakeStrength: 0.01
   spawnTarget: {x: 0, y: 0}
