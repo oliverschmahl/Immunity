@@ -30,12 +30,30 @@ EditorBuildSettings:
     path: Assets/Scenes/1 LEVEL/FirstLevel.unity
     guid: dbe28b4014fe71244af292d0e81b9c1c
   - enabled: 1
-    path: Assets/Scenes/Other/Level_Won.unity
-    guid: ee20c1a70072aaa41a8ef8f28ac321ca
+    path: Assets/Scenes/1 LEVEL/First_Level_Won.unity
+    guid: 7e32403098d082f4f9323d9979ac9648
   - enabled: 1
     path: Assets/Scenes/2 LEVEL/SecondStory.unity
     guid: 926da1e7029b9264f8ae7b48fd7c5bf8
   - enabled: 1
     path: Assets/Scenes/2 LEVEL/SecondCharacterIntro.unity
     guid: 60ae5f9f8a340634295a13e2124aec30
+  - enabled: 1
+    path: Assets/Scenes/2 LEVEL/SecondLevel.unity
+    guid: 2bb37d4b6afb51548a3c3c67eeac2442
+  - enabled: 1
+    path: Assets/Scenes/2 LEVEL/Second_Level_Won.unity
+    guid: 5784675a191ca5f41b48e1edafadff29
+  - enabled: 1
+    path: Assets/Scenes/3 LEVEL/ThirdStory.unity
+    guid: 16ed6d3d866203043ae77ec3ea572384
+  - enabled: 1
+    path: Assets/Scenes/3 LEVEL/ThirdCharacterIntro.unity
+    guid: c961f2c45eef2be43b6d38d602b0860a
+  - enabled: 1
+    path: Assets/Scenes/3 LEVEL/ThirdLevel.unity
+    guid: e9c300404ffafa746827c77ee1b371b9
+  - enabled: 1
+    path: Assets/Scenes/3 LEVEL/Third_Level_Won.unity
+    guid: c499a437e2f368f429c88bffc5f87f36
   m_configObjects: {}

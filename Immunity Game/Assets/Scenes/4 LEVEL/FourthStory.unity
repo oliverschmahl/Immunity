@@ -400,13 +400,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "After having recovered from her previous misfortunes, Anna decides to
-    pick some beautiful flowers to get in a better mood. While picking the flowers
-    she, unfortunately, grabs hold of a poisonous thorny stalk of one of the flowers.
-    The wound in her hand causes bacteria to flow in and the poison causes severe
-    inflammation in her hand. The inflammation causes a special fluid to flow towards
-    Anna\u2019s swollen hand which contains a new defence mechanism: complement proteins.\r\n\r\nYou
-    must use this new weapon against bacteria to save Anna once again!\r"
+  m_text: "Anna is in a playful mood and decides to play with her hamster. Unfortunately,
+    the hamster has other plans and bites Anna\u2019s finger. As the wound isn\u2019t
+    so bad, Anna decides not to do anything about it, but inside her body the immune
+    system is fighting a losing battle against the vast amount of bacteria that has
+    entered from the rodent\u2019s mouth. Your macrophages will not be able to keep
+    up with this many bacteria, but fortunately, the T-Cells have arrived this time
+    to help you out.\r\n\r\nYou must use the T-Cells in combination with the other
+    defence mechanisms to save Anna this time!\r"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eb495ef9b9153f34fb84b3104c700eec, type: 2}
   m_sharedMaterial: {fileID: -517712259613949016, guid: eb495ef9b9153f34fb84b3104c700eec, type: 2}
@@ -563,7 +564,7 @@ GameObject:
   - component: {fileID: 1245913810}
   - component: {fileID: 1245913809}
   m_Layer: 5
-  m_Name: Anna_Elbow
+  m_Name: Anna_Finger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -586,8 +587,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 691, y: -33}
-  m_SizeDelta: {x: 1099.671, y: 1099.671}
+  m_AnchoredPosition: {x: 603.5395, y: -183.54001}
+  m_SizeDelta: {x: 712.921, y: 712.92}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1245913809
 MonoBehaviour:
@@ -609,7 +610,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d6dae1cfad6493846831f346dfec06df, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 10881d615ccc99d4f99766d8d43b8edc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
