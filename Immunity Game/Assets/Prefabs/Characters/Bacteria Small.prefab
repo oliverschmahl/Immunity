@@ -160,13 +160,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea77eac938cdd4cd6b1090f10a7e338b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 1.1
+  maxSpeed: 1.5
   steerStrength: 0.8
   wanderStrength: 0.05
   visitedCell: {fileID: 0}
-  viewRadius: 12
+  viewRadius: 30
   damage: 1
-  damageRange: 7
+  damageRange: 8
 --- !u!70 &2176771401232811973
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -4269,10 +4269,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09051abf9135644788ce305550c9202e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bacteriaSmallPrefab: {fileID: 4898126210892204312, guid: 64fdf7f20ba6f48de83b1de0e216b0d7, type: 3}
-  bacteriaBigPrefab: {fileID: 2962982351549213880, guid: 1b046b0e9bb664ee190b9b499d3e023c, type: 3}
   swarmBacteriaSmallInterval: 0.5
   swarmBacteriaBigInterval: 2
+  numberOfSmallBacteriaToSpawn: 10
+  numberOfLargeBacteriaToSpawn: 10
   spawnDeviation: 40
 --- !u!1 &4427426391520364390
 GameObject:
@@ -4429,7 +4429,7 @@ MonoBehaviour:
   pooledBacterias: []
   bacteriaList: []
   bacteriaSmallPrefab: {fileID: 4898126210892204312, guid: e354abff6ea090f4d8a2df609d5c5a38, type: 3}
-  pooledAmount: 0
+  pooledAmount: 2000
 --- !u!1 &5576576938680165412
 GameObject:
   m_ObjectHideFlags: 0
@@ -4659,7 +4659,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledBacterias: []
   bacteriaLargePrefab: {fileID: 2962982351549213880, guid: 2b75c4c83d9489a4c975e98cad09f288, type: 3}
-  pooledAmount: 0
+  pooledAmount: 1000
 --- !u!1 &8560292937498140062
 GameObject:
   m_ObjectHideFlags: 0
