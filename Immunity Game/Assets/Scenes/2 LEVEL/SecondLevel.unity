@@ -734,7 +734,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 19097ff063ee98d4a8b5391f282de5a0, type: 3}
     - target: {fileID: 2094645478443400717, guid: fee3de3601ce0d244be7fcf3da234aeb, type: 3}
       propertyPath: m_Interactable
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2652545199375140659, guid: fee3de3601ce0d244be7fcf3da234aeb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -746,11 +746,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2652545199375140660, guid: fee3de3601ce0d244be7fcf3da234aeb, type: 3}
       propertyPath: numberOfLargeBacteriaToSpawn
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2652545199375140660, guid: fee3de3601ce0d244be7fcf3da234aeb, type: 3}
       propertyPath: numberOfSmallBacteriaToSpawn
-      value: 100
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4782432459316968606, guid: fee3de3601ce0d244be7fcf3da234aeb, type: 3}
       propertyPath: pooledAmount

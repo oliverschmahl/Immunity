@@ -78,9 +78,18 @@ public class StoryManager : MonoBehaviour
         List<GameObject> bacteriaLarge = BacteriaLargeManager.Instance.pooledBacterias;
 
         GameObject[] bacteria = bacteriaLarge.Concat(bacteriaSmall).ToArray();
+
+        bool allDead = true;
+        foreach (GameObject bacterium in bacteria)
+        {
+            if (bacterium.activeInHierarchy)
+            {
+                allDead = false;
+            }
+        }
             
         if (
-            !bacteria.Any() && 
+            allDead && 
             bacteriaSpawner.numberOfSmallBacteriaToSpawn < 1 && 
             bacteriaSpawner.numberOfLargeBacteriaToSpawn < 1)
         {
