@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  maxSpeed: 4
+  maxSpeed: 5.5
   steerStrength: 1
   damage: 200
   damageRange: 5
