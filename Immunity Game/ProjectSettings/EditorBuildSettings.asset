@@ -63,6 +63,21 @@ EditorBuildSettings:
     path: Assets/Scenes/4 LEVEL/FourthCharacterIntro.unity
     guid: 569b90ce946671c46bbbf6252ee34ea5
   - enabled: 1
+    path: Assets/Scenes/4 LEVEL/FourthLevel.unity
+    guid: 6adddaf181b7f72468be463f294c9953
+  - enabled: 1
     path: Assets/Scenes/4 LEVEL/Fourth_Level_Won.unity
     guid: a603e3f416b996c478f06e70c93e1c7e
+  - enabled: 1
+    path: Assets/Scenes/5 LEVEL/FithStory.unity
+    guid: 442bb7a9869d09f4aad32f0fef759124
+  - enabled: 1
+    path: Assets/Scenes/5 LEVEL/FithCharacterIntro.unity
+    guid: d339f1e0d6bcf6443a0482472481cb45
+  - enabled: 1
+    path: Assets/Scenes/5 LEVEL/FithLevel.unity
+    guid: e0ffdece1bd016a45b9ede8b73044326
+  - enabled: 1
+    path: Assets/Scenes/5 LEVEL/Fith_Level_Won.unity
+    guid: b4976ee81a109ae468b625048e88d671
   m_configObjects: {}

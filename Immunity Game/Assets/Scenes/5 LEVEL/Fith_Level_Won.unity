@@ -887,5 +887,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSceneIsALevel: 0
-  currentSceneIsSkipScene: 0
+  nextSceneShouldBeMainMenu: 1
   bacteriaSpawner: {fileID: 0}
