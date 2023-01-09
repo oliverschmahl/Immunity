@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Managers;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Behaviour_Scripts
@@ -22,7 +21,7 @@ namespace Behaviour_Scripts
         [SerializeField] private float rotationSpeed_Normal = 0.7f;
         [SerializeField] private float movementSpeed_Angry = 1.5f;
         [SerializeField] private float rotationSpeed_Angry = 1.2f;
-
+        
         [SerializeField] private State state = State.Normal;
         [SerializeField] private int damage = 100;
         [SerializeField] private int killsLeft = 100;

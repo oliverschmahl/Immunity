@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BacteriaSpawner : MonoBehaviour
 {
-    [SerializeField] private float swarmBacteriaSmallInterval = 0.5f;
-    [SerializeField] private float swarmBacteriaBigInterval = 2f;
+    [SerializeField] private float swarmBacteriaSmallInterval = 0.05f;
+    [SerializeField] private float swarmBacteriaBigInterval = 0.1f;
     [SerializeField] public int numberOfSmallBacteriaToSpawn = 10;
     [SerializeField] public int numberOfLargeBacteriaToSpawn = 10;
 

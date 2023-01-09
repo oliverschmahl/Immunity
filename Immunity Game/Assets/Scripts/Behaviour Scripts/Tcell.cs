@@ -63,7 +63,7 @@ namespace Behaviour_Scripts
 
                 float distanceToTarget = Vector2.Distance(tCellPosition, targetPosition);
 
-                if (distanceToTarget < 60f)
+                if (distanceToTarget < 5f)
                 {
                     target.GetComponent<Macrophage>().boost();
                     TcellManager.Instance.RemoveTcell(transform.gameObject);

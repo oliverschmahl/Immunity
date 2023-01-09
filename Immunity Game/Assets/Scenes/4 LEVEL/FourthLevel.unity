@@ -2459,6 +2459,14 @@ PrefabInstance:
       value: 78.8
       objectReference: {fileID: 0}
     - target: {fileID: 2652545199375140660, guid: fee3de3601ce0d244be7fcf3da234aeb, type: 3}
+      propertyPath: swarmBacteriaBigInterval
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2652545199375140660, guid: fee3de3601ce0d244be7fcf3da234aeb, type: 3}
+      propertyPath: swarmBacteriaSmallInterval
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2652545199375140660, guid: fee3de3601ce0d244be7fcf3da234aeb, type: 3}
       propertyPath: numberOfLargeBacteriaToSpawn
       value: 250
       objectReference: {fileID: 0}
