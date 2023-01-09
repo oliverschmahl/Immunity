@@ -80,4 +80,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/5 LEVEL/Fith_Level_Won.unity
     guid: b4976ee81a109ae468b625048e88d671
+  - enabled: 1
+    path: Assets/Scenes/Other/outro.unity
+    guid: 82698ab6fc3c3334c9810a74c16697c5
   m_configObjects: {}
