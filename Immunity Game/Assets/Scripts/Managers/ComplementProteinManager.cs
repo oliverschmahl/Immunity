@@ -28,14 +28,14 @@ namespace Managers
             OnComplementProteinListChanged?.Invoke(complementProteinList);
         }
         
-        public void RemoveComplementProtein(GameObject complementProtein)
+        public void Remove(GameObject complementProtein)
         {
             complementProteinList.Remove(complementProtein);
             Destroy(complementProtein);
             OnComplementProteinListChanged?.Invoke(complementProteinList);
         }
 
-        public void SpawnComplementProtein(Vector2 location, Vector2 spawnTarget)
+        public void Spawn(Vector2 location, Vector2 spawnTarget)
         {
             var spawnedObject = Instantiate(complementProteinPrefab, location, quaternion.identity);
             spawnedObject.transform.parent = Instance.transform;

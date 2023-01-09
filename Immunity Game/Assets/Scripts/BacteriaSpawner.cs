@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class BacteriaSpawner : MonoBehaviour
 {
-
-    [SerializeField] private GameObject bacteriaSmallPrefab;
-    [SerializeField] private GameObject bacteriaBigPrefab;
-
     [SerializeField] private float swarmBacteriaSmallInterval = 0.5f;
     [SerializeField] private float swarmBacteriaBigInterval = 2f;
+    [SerializeField] public int numberOfSmallBacteriaToSpawn = 10;
+    [SerializeField] public int numberOfLargeBacteriaToSpawn = 10;
 
     [SerializeField, Range(0f, 300f)] private float spawnDeviation = 40f;
     
@@ -25,8 +23,17 @@ public class BacteriaSpawner : MonoBehaviour
         yield return new WaitWhile(() => GameManager.instance.isPaused);
         yield return new WaitForSeconds(interval);
 
-        if (type.Equals("small")) BacteriaSmallManager.Instance.SpawnBacteria(transform.position);
-        if (type.Equals("large")) BacteriaLargeManager.Instance.SpawnBacteria(transform.position);
+        if (type.Equals("small") && numberOfSmallBacteriaToSpawn !> 1)
+        {
+            BacteriaSmallManager.Instance.SpawnBacteria(transform.position);
+            numberOfSmallBacteriaToSpawn -= 1;
+        }
+        
+        if (type.Equals("large") && numberOfLargeBacteriaToSpawn !> 1)
+        {
+            BacteriaLargeManager.Instance.SpawnBacteria(transform.position);
+            numberOfLargeBacteriaToSpawn -= 1;
+        }
         
         StartCoroutine(SpawnBacterias(interval, type));
     }

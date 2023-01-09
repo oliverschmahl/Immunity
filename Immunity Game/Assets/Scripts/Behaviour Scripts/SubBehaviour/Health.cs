@@ -43,7 +43,7 @@ public class Health : MonoBehaviour
                     Debug.Log("Antibodie removed");
                     break;
                 case "Complement Protein":
-                    ComplementProteinManager.Instance.RemoveComplementProtein(gameObject);
+                    ComplementProteinManager.Instance.Remove(gameObject);
                     Debug.Log("Complement Protein removed");
                     break;
             }
