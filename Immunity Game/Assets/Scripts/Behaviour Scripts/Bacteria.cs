@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Helpers;
 using Managers;
 using UnityEngine;
@@ -21,6 +23,8 @@ namespace Behaviour_Scripts
         public float viewRadius = 5f;
         public int damage = 1;
         public float damageRange = 0.5f;
+
+        public bool beingTargeted = false;
         
         private Vector2 position;
         private Vector2 velocity;
@@ -67,20 +71,25 @@ namespace Behaviour_Scripts
         {
             if (targetCell == null)
             {
-                float smallestDistance = Mathf.Infinity;
-                GameObject foundCell = null;
+                List<GameObject> closeCells = new List<GameObject>();
+
+                
                 foreach (GameObject cell in CellManager.Instance.cellList)
                 {
                     float distance = Vector2.Distance(position, cell.transform.position);
-                    if (distance < viewRadius && distance < smallestDistance && cell != visitedCell)
+                    if (distance < viewRadius && cell != visitedCell)
                     {
-                        targetCell = cell.transform.position;
-                        foundCell = cell;
-                        smallestDistance = distance;
+                        closeCells.Add(cell);
                     }
                 }
 
-                if (foundCell) visitedCell = foundCell;
+                if (closeCells.Count > 0)
+                {
+                    var nextTarget = Random.Range(0, closeCells.Count - 1);
+                    var foundCell = closeCells[nextTarget];
+                    targetCell = foundCell.transform.position;
+                    visitedCell = foundCell;
+                }
             }
 
             if (targetCell != null)

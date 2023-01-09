@@ -164,8 +164,8 @@ MonoBehaviour:
   steerStrength: 0.8
   wanderStrength: 0.05
   visitedCell: {fileID: 0}
-  viewRadius: 30
-  damage: 1
+  viewRadius: 50
+  damage: 2
   damageRange: 8
 --- !u!70 &2176771401232811973
 CapsuleCollider2D:
