@@ -64,7 +64,6 @@ MonoBehaviour:
   steerStrength: 0.6
   wanderStrength: 0.01
   visitedCell: {fileID: 0}
-  viewRadius: 500
   damage: 4
   damageRange: 8
   beingTargeted: 0
@@ -184,3 +183,4 @@ MonoBehaviour:
   spriteArray:
   - {fileID: 21300000, guid: 81d39579fd085b34b846b434bbd13b07, type: 3}
   - {fileID: 21300000, guid: 29c9e80d9fbf01e428cecae0bb8db07a, type: 3}
+  - {fileID: 21300000, guid: e98749f5eff089846b6416dcd5980399, type: 3}

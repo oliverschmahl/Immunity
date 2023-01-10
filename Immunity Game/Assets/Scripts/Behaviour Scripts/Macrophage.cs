@@ -114,7 +114,7 @@ namespace Behaviour_Scripts
                 foreach (GameObject bacterium in bacteria)
                 {
                     var distance = Vector3.Distance(transform.position, bacterium.transform.position);
-                    if (distance < 2f)
+                    if (distance < 2.5f)
                     {
                         bacterium.GetComponent<Health>().TakeDamage(damage);
                         if (killsLeft > 0 ) {

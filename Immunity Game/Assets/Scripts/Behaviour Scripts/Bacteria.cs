@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Helpers;
 using Managers;
@@ -12,7 +13,8 @@ namespace Behaviour_Scripts
         public enum State
         {
             active=0,
-            stunned=1
+            stunned=1,
+            damage=2
         }
 
         public float maxSpeed = 1;
@@ -119,17 +121,29 @@ namespace Behaviour_Scripts
             }
         }
 
-        public void stun() {
+        public void Stun() {
             state = State.stunned;
             spriteManager.changeSprite((int) State.stunned);
         }
 
-        public void wakeUp() {
+        public void WakeUp() {
             state = State.active;
             spriteManager.changeSprite((int) State.active);
         }
 
-        public State getState() {
+        public void DamageFlash()
+        {
+            StartCoroutine(DamageFlashSprite());
+        }
+
+        IEnumerator DamageFlashSprite()
+        {
+            spriteManager.changeSprite((int) State.damage);
+            yield return new WaitForSeconds(0.20f);
+            spriteManager.changeSprite((int) State.active);
+        }
+
+        public State GetState() {
             return state;
         }
     }

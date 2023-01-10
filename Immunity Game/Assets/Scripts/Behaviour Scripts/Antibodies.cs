@@ -82,7 +82,7 @@ namespace Behaviour_Scripts
 
                     if (distanceToTarget < 5f)
                     {
-                        target.GetComponent<Bacteria>().stun();
+                        target.GetComponent<Bacteria>().Stun();
                         state = State.stunning;
                         spriteManager.changeSprite((int) State.stunning);
                     }
@@ -104,7 +104,7 @@ namespace Behaviour_Scripts
             foreach (GameObject enemy in bacteria)
             {
                 if(!enemy.activeInHierarchy) continue;
-                if(enemy.GetComponent<Bacteria>().getState() == Bacteria.State.stunned) continue;
+                if(enemy.GetComponent<Bacteria>().GetState() == Bacteria.State.stunned) continue;
 
                 float distanceToEnemy = Vector2.Distance(transform.position, enemy.transform.position);
                 if (distanceToEnemy < distance)

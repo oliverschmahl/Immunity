@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Behaviour_Scripts;
 using Managers;
 using UnityEngine;
 
@@ -17,6 +18,16 @@ public class Health : MonoBehaviour
     public void TakeDamage(int amount) {
         if(amount < 0) {
             throw new System.ArgumentException("Damage cannot be negative");
+        }
+        
+        switch (tag)
+        {
+            case "Bacteria Small":
+                gameObject.GetComponent<Bacteria>().DamageFlash();
+                break;
+            case "Bacteria Large":
+                gameObject.GetComponent<Bacteria>().DamageFlash();
+                break;
         }
         
         health -= amount;

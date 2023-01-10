@@ -15,12 +15,6 @@ public class SpriteManager : MonoBehaviour
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     // Changes the sprite of the SpriteRenderer to the specified index in the Sprite array
     public void changeSprite(int index)
     {
