@@ -107,15 +107,25 @@ namespace Behaviour_Scripts
                 Vector2 newDirection = Vector2.Lerp(macrophageUp, targetDirection, _rotationSpeed * Time.deltaTime);
                 transform.up = newDirection;
 
-                float distanceToTarget = Vector2.Distance(macrophagePosition, targetPosition);
-                if (distanceToTarget < 2f)
-                {
-                    target.GetComponent<Health>().TakeDamage(damage); // Gives damage
-                    if (killsLeft > 0 ) {
-                        killsLeft -= 1;
-                    }
+                List<GameObject> bacteriaSmall = BacteriaSmallManager.Instance.pooledBacterias;
+                List<GameObject> bacteriaLarge = BacteriaLargeManager.Instance.pooledBacterias;
+                GameObject[] bacteria = bacteriaLarge.Concat(bacteriaSmall).ToArray();
 
-                    target = null;
+                foreach (GameObject bacterium in bacteria)
+                {
+                    var distance = Vector3.Distance(transform.position, bacterium.transform.position);
+                    if (distance < 2f)
+                    {
+                        bacterium.GetComponent<Health>().TakeDamage(damage);
+                        if (killsLeft > 0 ) {
+                            killsLeft -= 1;
+                        }
+
+                        if (bacterium.transform.position == targetPosition)
+                        {
+                            target = null;
+                        }
+                    }
                 }
             }
         }
