@@ -403,9 +403,8 @@ MonoBehaviour:
   m_text: "The following day, while riding her bike on her way to school, Anna falls
     off her bike and scrapes her elbow. It hurts a lot and Anna starts crying. The
     area around the scrape has become hot and inflamed, which is a sign that a fierce
-    fight is taking place inside her body. The bacteria are now flooding in from
-    multiple directions and new types of bacteria have appeared.\r\n\r\nIt is up
-    to you again to save Anna!\r"
+    fight is taking place inside her body. Multiple different types of bacteria are
+    now flodding into her body...\n\r\nIt is up to you again to save Anna!\r"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eb495ef9b9153f34fb84b3104c700eec, type: 2}
   m_sharedMaterial: {fileID: -517712259613949016, guid: eb495ef9b9153f34fb84b3104c700eec, type: 2}
@@ -1078,5 +1077,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSceneIsALevel: 0
-  currentSceneIsSkipScene: 0
+  nextSceneShouldBeMainMenu: 0
   bacteriaSpawner: {fileID: 0}

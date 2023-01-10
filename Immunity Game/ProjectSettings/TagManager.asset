@@ -76,11 +76,14 @@ TagManager:
   - name: Complement Protein
     uniqueID: 920563833
     locked: 0
+  - name: Cell healthbar
+    uniqueID: 269403041
+    locked: 0
+  - name: Cell healthbar priority
+    uniqueID: 2238449841
+    locked: 0
   - name: UI
     uniqueID: 2978165927
-    locked: 0
-  - name: UI PRIORITY
-    uniqueID: 2063595487
     locked: 0
   - name: Menu
     uniqueID: 3840022303
