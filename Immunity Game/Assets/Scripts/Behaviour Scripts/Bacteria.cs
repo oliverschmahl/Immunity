@@ -139,8 +139,8 @@ namespace Behaviour_Scripts
         IEnumerator DamageFlashSprite()
         {
             spriteManager.changeSprite((int) State.damage);
-            yield return new WaitForSeconds(0.20f);
-            spriteManager.changeSprite((int) State.active);
+            yield return new WaitForSeconds(0.10f);
+            spriteManager.changeSprite((int) state);
         }
 
         public State GetState() {
